@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>copiklGrogu - 个人汉化者</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6D28D9;
+            --secondary: #7C3AED;
+            --accent: #8B5CF6;
+            --light: #F5F3FF;
+            --dark: #1F2937;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #FAFAFA;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .profile-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,243,255,0.9));
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .skill-badge {
+            background-color: var(--light);
+            color: var(--primary);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: white;
+            color: var(--dark);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: var(--primary);
+        }
+        
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(109,40,217,0.3), transparent);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadein {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- 个人资料卡片 -->
+        <div class="profile-card p-8 mb-12 text-center animate-fadein">
+            <div class="flex justify-center mb-6">
+                     <img src="https://i.imgur.com/t33tD5e.jpeg" alt="copiklaGrogu" class="avatar">
+            </div>
+            <h1 class="text-3xl font-bold mb-2 text-gray-900">copiklaGrogu</h1>
+            <p class="text-xl mb-6 text-gray-600">为爱发电的个人汉化者</p>
+            <p class="text-gray-700 max-w-2xl mx-auto mb-6">欢迎在哔哩哔哩、小红书、LOFTER以及抖音（还未注册）上关注我，获取更多汉化内容！</p>
+        </div>
+        
+        <!-- 关于我 -->
+        <div class="mb-12 animate-fadein delay-1">
+            <h2 class="text-2xl font-bold mb-6 text-gray-900 flex items-center">
+                <i class="fas fa-user mr-3 text-purple-600"></i> 关于我
+            </h2>
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <p class="mb-4 text-gray-700">部分游戏已获得原作者的汉化授权，所有汉化均可免费下载。</p>
+                <p class="mb-4 text-gray-700">我从未授权任何国内网站上传汉化作品，请通过我的个人页面或企鹅群获取。</p>
+
+                <p class="mb-4 text-gray-700">游戏评分来源于原网站（以创建网页时为准），标签时间为汉化时间，中字标题为实况标题。</p>
+            </div>
+        </div>
+        
+        <hr class="section-divider my-8">
+        
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>copiklaGrogu - 个人汉化作品集</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .game-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .game-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            background-color: #F3F4F6;
+            color: #6B7280;
+            margin-right: 4px;
+        }
+        
+        .game-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .game-detail.active {
+            max-height: 1000px;
+            padding: 20px;
+            border-top: 1px solid #EEE;
+        }
+        
+        .rating {
+            color: #F59E0B;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- 游戏合集标题 -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-900">简中游戏合集</h1>
+            <div class="flex space-x-2">
+                <button class="p-2 rounded-full bg-gray-200 text-gray-700">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button class="p-2 rounded-full bg-gray-200 text-gray-700">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+        
+
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIN2GgsNEnBA-tWz-XUKUxv56A6teiyAAJmFAACNhNgVSEQiBMBHXiqNgQ.png" class="w-full h-full object-cover" alt="How to Break Up With Your Yandere Boyfriend">
+  
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">病娇男友故意出车祸想挽回你的感情，你能成功与他分手吗？</p>
+  </div>
+</div>
+
+<h2 class="text-lg font-bold text-gray-900">HOW TO BREAK UP WITH YOUR YANDFILE BOYFILES</h2>
+<div class="flex items-center mt-1 text-sm text-gray-600">
+    <span class="mr-3">devilinlovegames</span>
+    <span class="mr-3">2025/05/11</span>
+    <span class="rating">4.9分</span>
+</div>
+
+<div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">血腥</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">暴力</span>
+</div>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                    </div>
+                </div>
+                
+                <div class="game-detail">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="col-span-2">
+                            <h3 class="text-xl font-bold mb-4">简介</h3>
+                            <p class="text-gray-700 mb-6">
+                                和快要分手的男朋友吃顿饭，情况能有多糟？你现在的生活，说不上差，却也好不到哪去。一份让人提不起劲的工作，几个偶尔联系的老朋友，和家人几乎没什么来往。至于感情，留下的只有伤痕和一堆债务。唯一看起来还过得去的，是Soren，你的男朋友。他很普通，有条狗，有份远程工作。周末一起看烂片，窝在沙发上虚度时间。没有大风大浪，也没有太多惊喜，就像大多数人的生活。可最近，你越来越怀疑，自己还能不能像以前那样去爱他。所以你决定，该结束了。刚好，他约你去他家吃晚饭。你想，这次就说清楚吧。但你真的能开口吗？还是说，Soren，其实没你想的那么简单？也许，这顿饭之后，一切都会不一样。
+                            </p>
+                            
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold mb-2">提示</h4>
+                                <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://devilinlovegames.itch.io/how-to-break-up-with-your-yandere-boyfriend" class="text-purple-600 hover:underline break-all">devilinlovegames.itch.io/how...friend</a>
+                                </div>
+                                
+                                <div>
+                                    <p class="font-medium text-gray-700">汉化PC端（含Mac）</p>
+                                    <div class="bg-gray-100 p-2 rounded">
+                                        <p class="text-sm">链接: /s/1lDNbIEaDoMtyibloEjGXwA</p>
+                                        <p class="text-sm">提取码: bvb4</p>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p class="font-medium text-gray-700">汉化安卓端</p>
+                                    <div class="bg-gray-100 p-2 rounded">
+                                        <p class="text-sm">链接: /s/1i5BJKAXGfs6y4qFnZdTXEg</p>
+                                        <p class="text-sm">提取码: mphm</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+ <!-- 第二个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIN3WgsOnSR739kujBnquNK2SXBI9QLAAKIFAACNhNgVZcpjrJkqLU3NgQ.jpg" class="w-full h-full object-cover" alt="Big Bad Dogs">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">尾随你的暴力覆面摩托男，会为你扫清一切碍眼的存在</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">BIG BAD DOGS</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">sparOw</span>
+                        <span class="mr-3">2025/04/12</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-gray-100 text-black-800 rounded text-xs">覆面</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+    <span class="px-2 py-1 bg-blue-100 text-black-800 rounded text-xs">跟踪</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        一旦咬住，就绝不会松口。你在疯狗便利店上夜班。24小时营业的店，和你一样，永不停歇，也无路可逃。活着，交房租，熬夜...假装一切还算正常。直到他出现...每晚都来，戴着头盔，从不说话，也从不摘下。他给人的感觉...安静得过头了。然后，事情开始失控。你开始怀疑自己。开始分不清，什么是现实，什么是幻觉。可最可怕的是——你可能根本不想知道答案。这个世界，还有你自己，真正出问题的地方...迟早会浮出水面。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://spar0w.itch.io/bigbaddogs" class="text-purple-600 hover:underline break-all">https://spar0w.itch.io/bigbaddogs</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1ODs89wr0WJrHXNLx9TpOjw</p>
+                                <p class="text-sm">提取码: jndy</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1Fv54YP691lVFWw9bwGfTKg</p>
+                                <p class="text-sm">提取码: g8ss</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第三个游戏 -->
+<div class="space-y-4">
+    <div class="game-card">
+        <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+            <div class="flex justify-between items-start">
+                <div>
+                    <div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+                        <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIN4GgsPUzrR77OY0Rw2wOMuqowb0QJAAKMFAACNhNgVUJ15v6xMfZPNgQ.png" class="w-full h-full object-cover" alt="My Dear Hatchet Man">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">对你一见钟情的陌生人变成了你的病娇跟踪者</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">my dear hatchet man</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">Gnometastix</span>
+                        <span class="mr-3">2025/03/30</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+    <span class="px-2 py-1 bg-blue-100 text-black-800 rounded text-xs">跟踪</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        树林里能出什么事呢？放轻松，享受与这位友善陌生人的时光吧！也许，他早已悄悄喜欢上你了。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://gnometastix.itch.io/my-dear-hatchet-man" class="text-purple-600 hover:underline break-all">https://gnometastix.itch.io/my-dear-hatchet-man</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1mhRZh54q4xSpAVk2_o0Mlw</p>
+                                <p class="text-sm">提取码: hdn2</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/17TiFj5NXh6lFmEa36wCnEA</p>
+                                <p class="text-sm">提取码: 8ufx</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第四个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRAAFoLztGBB0zu3PxuJjc0hbAMG_XoAACxRoAAmqbgVWjHPYe6UwDfDYE.png" class="w-full h-full object-cover" alt="Robocult">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">被你创造的AI黑化成邪教头子，妄想带你赛博飞升</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">Robocult</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">biinxiix</span>
+                        <span class="mr-3">2025/03/28</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+    <span class="px-2 py-1 bg-gray-100 text-black-800 rounded text-xs">恐怖</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        头脑一阵晕眩...这是哪里？更重要的是...你又是谁？混沌中，你终于看清了那个救赎者的身影。“别再忧虑了，”一个低沉的声音响起，“这一切已经超出了你的掌控。”...你会选择追随光明，还是堕入无尽的黑暗？
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://biinxiix.itch.io/robocult" class="text-purple-600 hover:underline break-all">https://biinxiix.itch.io/robocult</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1FWQvWCAX0ogTo3LZHjEJIg</p>
+                                <p class="text-sm">提取码: dpkz</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1Sn5p-OWbywJAF2QZTA-8nw</p>
+                                <p class="text-sm">提取码: 5ed8</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第五个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRE2gvQnw9kPeYwSWHKayMlULEhBTwAALqGgACapuBVbMU0ANNyYy3NgQ.jpg" class="w-full h-full object-cover" alt="Toeatagod">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">作为被送于神明的礼物，你甘愿变为玩具，还是玩弄众神...？</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">Toeatagod</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">Soffis_mbm</span>
+                        <span class="mr-3">2025/03/04</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+    <span class="px-2 py-1 bg-blue-100 text-black-800 rounded text-xs">宗教</span>
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">恐怖</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        在游戏过程中，你将操控一个傀儡，作为礼物被送于神明，你必须融入你的角色，遵守法则的规矩，以避免破坏游戏平衡和攻略角色的心理状态。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://soffis-mbm.itch.io/to-eat-a-god" class="text-purple-600 hover:underline break-all">https://soffis-mbm.itch.io/to-eat-a-god</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1QjGxQnhCTSWntzwK692vIw</p>
+                                <p class="text-sm">提取码: cu2a</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1N_f93ZSi29h58e1SRnRjGw</p>
+                                <p class="text-sm">提取码: e77q</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第六个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRFWgvSzb6iRRGCqSBpp89YuZmFR4eAAL2GgACapuBVWLVAAF4Lh6gqTYE.png" class="w-full h-full object-cover" alt="Astronought">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">因为太爱你所以屠杀了你全船同伴的病娇外星寄生虫</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">Astronought</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">deerspherestudios</span>
+                        <span class="mr-3">2025/02/11</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">恐怖</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        你在飞船上醒来，红色警报灯闪烁，船员却全都消失得无影无踪...整个飞船上只剩下你，和一个从未见过的新员工。对方性格古怪，说话方式更是让人难以捉摸，不过好在暂时还算能相处。作为Bidadari-221号飞船的机械师，你的职责是确保这艘专为运送地球宠物用品的飞船正常运作。但现在，情况显然已经远超你的控制。无论发生了什么，你必须在一切走向无法挽回之前，弄清楚真相。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://deerspherestudios.itch.io/astronought" class="text-purple-600 hover:underline break-all">https://deerspherestudios.itch.io/astronought</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1NAF1yuo8qQxVb9GyvLB1OQ</p>
+                                <p class="text-sm">提取码: my1p</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1dw0dLlmrc7BUsyq-_ylykg</p>
+                                <p class="text-sm">提取码: eanb</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第七个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRFmgvTjDvIg7Lqi4-NWk9dN3WGziWAAIFGwACapuBVecDrJMVntG9NgQ.png" class="w-full h-full object-cover" alt="How to Date an Entity (and stay alive)">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">病娇实体想与你约会</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">How to Date an Entity (and stay alive)</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">SFour</span>
+                        <span class="mr-3">2025/02/03</span>
+                        <span class="rating">4.7分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">恐怖</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        故事从主角醒来开始，ta在自己的房间里遇到了一位高挑而神秘的女人。为了保住性命，ta必须与她“约会”。游戏结合了恋爱模拟与“录像带恐怖”的元素，共有 10 种不同的结局。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://sfour-s4.itch.io/how-to-date-an-entity" class="text-purple-600 hover:underline break-all">https://sfour-s4.itch.io/how-to-date-an-entity</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">已转正，请直接去官网下载</p>
+                                <p class="text-sm">已转正，请直接去官网下载</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">已转正，请直接去官网下载</p>
+                                <p class="text-sm">已转正，请直接去官网下载</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第八个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRGGgvU0siFWTcByO8XpGwZy7FnfTjAAIMGwACapuBVZzkx9EMv1DrNgQ.png" class="w-full h-full object-cover" alt="Where Winter Crows Go">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">痴迷于你的病娇想要囚禁你，你愿意接受他的求爱吗？</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">Where Winter Crows Go</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">prikarin</span>
+                        <span class="mr-3">2025/01/31</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">恐怖</span>
+    <span class="px-2 py-1 bg-pink-100 text-white-800 rounded text-xs">乙女</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        厌倦了千篇一律的生活，你决定前往雪峰镇，那里是远近闻名的滑雪胜地，正好用一周假期来放松身心。可谁能想到，半路上车却抛了锚，无奈之下，你只好徒步前往最近的地方寻求帮助。最终，你一路摸索，竟来到了深山中的一间木屋。木屋的主人是一位环境研究员，正在专注于“部分迁徙”等生态课题的研究。在这片冰天雪地中，你会选择留在木屋中休整，还是冒着严寒继续寻找其他出路呢？
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://prikarin.itch.io/where-winter-crows-go" class="text-purple-600 hover:underline break-all">https://prikarin.itch.io/where-winter-crows-go</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端补丁</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1E_pVuubQPLovXFebVK8NiA</p>
+                                <p class="text-sm">提取码: xsi1</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端补丁</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1E_pVuubQPLovXFebVK8NiA</p>
+                                <p class="text-sm">提取码: xsi1</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第九个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRHGgvWfTH1k_S5CDGuMj3iUnoaEnfAAIVGwACapuBVXj9GIJpN1dDNgQ.png" class="w-full h-full object-cover" alt="A Date with Death">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">你的傲娇死神男友来和你谈甜甜的恋爱啦！</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">A Date with Death</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">Two and a Half Studios</span>
+                        <span class="mr-3">2025/01/25</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-pink-100 text-white-800 rounded text-xs">乙女</span>
+    <span class="px-2 py-1 bg-pink-100 text-black-800 rounded text-xs">人均白毛控</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        你以为自己只是个普通人，可从小到大，每次濒临危险时，总能“刚好”躲过去......这真的只是因为运气吗？直到某天，你的电脑上突然弹出一个奇怪的程序，一个自称“死神”的男人出现了。他说，他是来取走你灵魂的。从那一刻起，你的生活彻底被颠覆了。随着你一步步了解这个神秘的死神，你开始怀疑，你们的相遇是不是命运早已安排好的。你能抗拒他的魅力吗？还是会爱上这个注定要带走你灵魂的人？
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://twoandahalfstudios.itch.io/a-date-with-death" class="text-purple-600 hover:underline break-all">https://twoandahalfstudios.itch.io/a-date-with-death</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC补丁</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1yzfr9nL6H2-s2cIzjdcF7A</p>
+                                <p class="text-sm">提取码: 4e2q</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端（仅有免费本体）</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1yKZzb3HeGmu4twCtRbhBEw</p>
+                                <p class="text-sm">提取码: 981x</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第十个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRGWgvV6tfv9yQTKLnuyedGGM_i2oWAAIQGwACapuBVVkeSYJy6VawNgQ.png" class="w-full h-full object-cover" alt="My Sweet! Housemate">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">你的食人魔男友向你发出了同居邀请，你会抛弃他，还是和他在一起？</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">My Sweet! Housemate</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">sourmilk</span>
+                        <span class="mr-3">2024/12/13</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">恐怖</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        My Sweet Housemate是一款互动式视觉小说游戏，讲述了一个无家可归的成年人在美国努力寻找住所的故事。在几乎绝望的时候，你终于发现了一则看似正常（其实十分可疑）的房屋出租广告。或许这是你的好运降临——也可能是噩梦的开始。而你的新房东承旻，总让人感觉...有点不对劲。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">游戏在我翻译完一个月后进行了重置，如果替换补丁打不开游戏，请从steam打开原文件删掉所有残存数据，如果还是打不开，可以百度如何从C盘找到renpy游戏存档，删掉对应游戏文件</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://sourmiiiilk.itch.io/my-sweet-housemate" class="text-purple-600 hover:underline break-all">https://sourmiiiilk.itch.io/my-sweet-housemate</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端补丁</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1JUO3u5qfiWJMdMVY5KA4SA </p>
+                                <p class="text-sm">提取码: uh81</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端补丁</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1JUO3u5qfiWJMdMVY5KA4SA</p>
+                                <p class="text-sm">提取码: uh81</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第十一个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRHmgvW4KI-rO3chKQw9KYxWBoHG0xAAIZGwACapuBVWWmIfASaY_wNgQ.png" class="w-full h-full object-cover" alt="Meeting in the Flesh">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">你的怪物男友们想要追求你，你愿意与他们共度余生吗？</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">Meeting in the Flesh</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">inkEthic (inktrashing + cacoethic)</span>
+                        <span class="mr-3">2024/12/06</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">恐怖</span>
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">怪物</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        你将扮演 Vil，居住在一座奇特而友善的小城，与形形色色的有趣角色相遇，并与三位独特的怪物追求者展开浪漫故事。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://inkethic.itch.io/meetingintheflesh" class="text-purple-600 hover:underline break-all">https://inkethic.itch.io/meetingintheflesh</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/13gL36JKjIoGhOkE8D2LK-g</p>
+                                <p class="text-sm">提取码: agpo</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1HEKtktXi8VYzG8w3Y2Tzvw</p>
+                                <p class="text-sm">提取码: nifp</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第十二个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRH2gvXSNqtH2V7bTGAXlnPFC7jkJdAAIkGwACapuBVddEoutU6uQVNgQ.png" class="w-full h-full object-cover" alt="A Double Sided Mirror">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">你的双重人格病娇男友愿为你篡改现实，你能接受他永远的视奸吗？</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">A Double Sided Mirror</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">Glass Berry Studios</span>
+                        <span class="mr-3">2024/11/16</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">恐怖</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        你刚结束了一段不愉快的恋情。身边既没有家人，也没有朋友，你只能用交友软件来认识新的朋友。在软件上，你遇到了一个男生，想了想，还是决定邀请他见面，希望这能帮你忘记过去，试着开始新生活。但......这真的是个好主意吗？还是说，这会成为你这辈子做过的最糟糕的决定？算了，别想太多。毕竟，追求幸福是每个人的权利......对吧？
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://glassberrystudios.itch.io/adoublesidedmirror" class="text-purple-600 hover:underline break-all">https://glassberrystudios.itch.io/adoublesidedmirror</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1_vj3E7FoUMwlhW3_Vhlzpg</p>
+                                <p class="text-sm">提取码: 8ktl</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1X5WgIcf6KZAQ4SlVRlCr4g</p>
+                                <p class="text-sm">提取码: 0ybv</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第十三个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRIWgvXk6HsVWkVR6CjOD6c0HQvRSIAAIoGwACapuBValiDr5igqJWNgQ.jpg" class="w-full h-full object-cover" alt="The Kid at the Back">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">痴迷于你的阴郁病娇男，会一直跟踪你</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">The Kid at the Back</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">fantasia | TealCat</span>
+                        <span class="mr-3">2024/11/16</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+    <span class="px-2 py-1 bg-blue-100 text-black-800 rounded text-xs">跟踪</span>
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">恐怖</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        简介内容
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">汉化版仅有SFW内容，NSFW请上官网购买</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://fantasia-kittcat.itch.io/the-kid-at-the-back-demo" class="text-purple-600 hover:underline break-all">https://fantasia-kittcat.itch.io/the-kid-at-the-back-demo</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1ltWFdsYUcDI2htZH70OGyw</p>
+                                <p class="text-sm">提取码: wsfu</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1cRuUOCsTVFkx4Bz48z2ZzQ</p>
+                                <p class="text-sm">提取码: n89r</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第十四个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRImgvXzMiX_Y-oZrliQ_ekF0pj9GBAAIpGwACapuBVQ38bvXwE-VHNgQ.png" class="w-full h-full object-cover" alt="wh4t1w0uldntd0">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">你的变态跟踪狂男友绑架你回家，想把你变成他的完美妻子</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">wh4t1w0uldntd0</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">s1ckh34d</span>
+                        <span class="mr-3">2024/10/05</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">恐怖</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">血腥</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">暴力</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        "如果你没有理由依赖我，那我就给你创造一个。"你曾成功逃离一个跟踪狂/绑架者，但他又回来找你了，而且变得比以前更恐怖。不会有美好的结局，即便是你，也无法改变他。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://s1ckh34d.itch.io/wh4t-1-w0ulndt-d0" class="text-purple-600 hover:underline break-all">https://s1ckh34d.itch.io/wh4t-1-w0ulndt-d0</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1HLwKM8eq5VBuDsv2hV6isg</p>
+                                <p class="text-sm">提取码: ewy6</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1N6k7I82r0ZgF2IawstSktA </p>
+                                <p class="text-sm">提取码: kh5i</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第十五个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRI2gvYItgM3NT0IHcGBG04m713Le9AAIqGwACapuBVTfRT1CW8vMHNgQ.png" class="w-full h-full object-cover" alt="Obscura">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">美女神父对你一见钟情，想将你变成他的信徒</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">Obscura</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">Rotten Raccoons</span>
+                        <span class="mr-3">2024/09/22</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-gray-100 text-black-800 rounded text-xs">覆面</span>
+    <span class="px-2 py-1 bg-pink-100 text-white-800 rounded text-xs">乙女</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        我曾听过这样一个故事……在山下有一个集市，那里可以买卖任何东西。访客们戴着面具，成为无面的陌生人。这里是无良商人、被放逐者和绝望者的栖身之地。你就是那些绝望者之一。集市中，每个陌生人都怀揣着自己的秘密和野心，他们可以指引你穿梭于集市之中，带你达到目的地，但不要指望他们会真心为你着想。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="官网" class="text-purple-600 hover:underline break-all">官网地址</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端补丁</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1RFKgcyQ6bs4e-S-wZuQ-Ow</p>
+                                <p class="text-sm">提取码: 0922</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端补丁</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1RFKgcyQ6bs4e-S-wZuQ-Ow</p>
+                                <p class="text-sm">提取码: 0922</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第十六个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRJGgvYhLm61xVMKmDHInxBrWm2nJnAAIrGwACapuBVb9NxIoQ4tY6NgQ.png" class="w-full h-full object-cover" alt="After Hours">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">和FNAF机器人约会吧！安全漏洞日月同人乙女游戏《After hour》</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">After Hours</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">Snowyrey</span>
+                        <span class="mr-3">2024/08/23</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+    <span class="px-2 py-1 bg-blue-100 text-black-800 rounded text-xs">同人游戏</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        你是弗莱迪披萨店里一名疲惫的新员工。你被分配到一个“令人羡慕”的工作：修理日托所里的发电机，因为有人把它们弄得一团糟。在这个过程中，你结识了日托所的工作人员，并在各种事件中更深入地了解他们。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">安卓用户如果卡在Sun阻止你修电线那里，多点 1 号电线就会自动退出</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://snowyrey.itch.io/after-hours" class="text-purple-600 hover:underline break-all">https://snowyrey.itch.io/after-hours</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1mjv_iOj9evRyRF5GhFU_2A</p>
+                                <p class="text-sm">提取码: nm08</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1QYZ7KmU9nWsY2B8zA70rVg</p>
+                                <p class="text-sm">提取码: y5yn</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第十七个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRJWgvaDrm8l7vwFDQAoK5-tQHexCDAAIxGwACapuBVVMw0Sdvn8bENgQ.jpg" class="w-full h-full object-cover" alt="IF - Dusttale">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">精神错乱的骷髅痴迷于你，你愿意拯救他，为他重置世界吗？</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">IF - Dusttale</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">Darkpetal16</span>
+                        <span class="mr-3">2024/07/18</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+    <span class="px-2 py-1 bg-blue-100 text-black-800 rounded text-xs">同人游戏</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        你在攀登伊波特山时，一不小心被藤蔓绊倒跌进了洞中...你坠落了。你在坠落中幸存了下来。但你受伤了...在流血...濒临死亡... 你掉入了一个如坟墓般寂静的黑暗地下世界。这里只有你、你的心跳和你的影子.....以及无数的灰烬。你能给这个故事一个happy ending吗？
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">文件内的html文件用浏览器形式打开，文件夹内含游戏攻略</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://darkpetal16.itch.io/if-dusttale" class="text-purple-600 hover:underline break-all">https://darkpetal16.itch.io/if-dusttale</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1ztZNzi1-YZPW2anBLN8dWg</p>
+                                <p class="text-sm">提取码: mu28</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1ztZNzi1-YZPW2anBLN8dWg</p>
+                                <p class="text-sm">提取码: mu28</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第十八个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRJmgvaZ1VpbIdSRQaNDGiBS19vkqzAAI0GwACapuBVR9MAxeVHjdVNgQ.jpg" class="w-full h-full object-cover" alt="MONSTER X MEDIATOR">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">你的覆面系怪物男友痴迷于你，他是你狂热粉丝</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">怪物调解员</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">HeadLocker</span>
+                        <span class="mr-3">2024/02/14</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-gray-100 text-black-800 rounded text-xs">覆面</span>
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        简介内容
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="官网地址" class="text-purple-600 hover:underline break-all">官网地址</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1GA5hEWsWht5xWqLjHBGBMw</p>
+                                <p class="text-sm">提取码: hqnj</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1GA5hEWsWht5xWqLjHBGBMw</p>
+                                <p class="text-sm">提取码: hqnj</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第十九个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRJ2gva4VMZrAgF9KB5gS-9Kh1KBq-AAI2GwACapuBVfBY3o2bAb1bNgQ.png" class="w-full h-full object-cover" alt="FAVOR">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">你的病娇恶魔男友痴迷于你，想让你爱上他</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">FAVOR</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">CONCRETEPARASITE</span>
+                        <span class="mr-3">2024/06/01</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        你在电影院里做着无聊的工作，有一群讨厌你的“朋友”，还有一个奇怪的新相识在你经常去的酒吧里。这样的生活肯定不会变得更糟糕的吧...？进入主角的生活，遇见英俊的恶魔Z！Z表面上温柔可爱，但他真的只是这样...?
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://concreteparasite.itch.io/favor" class="text-purple-600 hover:underline break-all">https://concreteparasite.itch.io/favor</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1MLxvDwWOUSJ84vyI16tajw</p>
+                                <p class="text-sm">提取码: wgb2</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1340Y8BzsIliAc5Q4SdrhJg</p>
+                                <p class="text-sm">提取码: 1005</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第二十个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRKGgvbM-GudevdSVmyYFKBhTZ5tXWAAI6GwACapuBVdKapjKVoesgNgQ.png" class="w-full h-full object-cover" alt="There's Something Wrong With My Blind Date!">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">让弑亲病娇公子哥成为你的裙下臣</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">There's Something Wrong With My Blind Date!</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">C2PHOS</span>
+                        <span class="mr-3">2024/05/18</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        你的母亲被诊断为终末期心力衰竭。医生预计她只剩下不到一年的时间。在你绝望之际，Louise Lu向你提出一个提议：如果你能和她的弟弟Lu Ren去相亲，并成功收集到他与他们父母死亡案件有关的证据，她将为你的母亲安排心脏移植手术。在别无选择的情况下，你勉强同意协助她，以“相亲”的名义调查她的弟弟。你明白其中的风险，你明白赌注的重大。但你真的知道自己签署了什么吗？
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://c2phos.itch.io/theres-something-wrong-with-my-blind-date-demo" class="text-purple-600 hover:underline break-all">https://c2phos.itch.io/theres-something-wrong-with-my-blind-date-demo</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/13eFN2eBG1cb0AShtBh7Sdg</p>
+                                <p class="text-sm">提取码: q9ic</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/13eFN2eBG1cb0AShtBh7Sdg</p>
+                                <p class="text-sm">提取码: q9ic</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第二十一个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRKmgvcAwI0AINz6Ars5AUCpjPiiFYAAI-GwACapuBVQbqlzmr0I93NgQ.jpg" class="w-full h-full object-cover" alt="TFADatingSim-RestnRepair">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">【恋与变形金刚】选择你的赛博坦男友</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">TFADatingSim-RestnRepair</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">avoidghost和Ballpitbee</span>
+                        <span class="mr-3">2024/02/01</span>
+                        <span class="rating">原游戏已删除</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-blue-100 text-black-800 rounded text-xs">同人游戏</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        在这个恋爱同人游戏里，与变形金刚动画版中你最喜欢的机甲约会吧！从6位单身人士中选择：威震天、救护车、撑天臂、通天晓、杯子和英昭天！每位单身人士都有独特的故事情节，你最喜欢的机甲如红蜘蛛、药师和啰嗦等都会客串出场，而在完成所有路线后，还会有一个神秘的第七位单身人士！
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">原游戏因两位创作人的分离而取消制作了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="游戏已取消制作" class="text-purple-600 hover:underline break-all">游戏已取消制作</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/133__3AWKc5sTQgauHAH6pA</p>
+                                <p class="text-sm">提取码: hqnj</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/133__3AWKc5sTQgauHAH6pA</p>
+                                <p class="text-sm">提取码: hqnj</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第二十二个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRKWgvb4KuxWtgcn-bRCtZS2wF0CXpAAI8GwACapuBVY8d_0-pLODyNgQ.jpg" class="w-full h-full object-cover" alt="A Slasher dating sim">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">【恋与杀人魔】你的危险男友，分手即出殡，此生只谈一次的恋爱</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">A Slasher dating sim</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">Noir</span>
+                        <span class="mr-3">2023/10/18</span>
+                        <span class="rating">4.7分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+    <span class="px-2 py-1 bg-gray-100 text-black-800 rounded text-xs">覆面</span>
+    <span class="px-2 py-1 bg-blue-100 text-black-800 rounded text-xs">同人游戏</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        你有没有看过一部恐怖电影并对你的朋友说“听我说完”？ 很好，你已经听到了！我们的团队正在努力打造一款完美的同人游戏，以满足您对恐怖追杀游戏的热爱——基础包包括……贾森·沃里斯、迈克尔·迈尔斯、皮脸（又名布巴·索耶）、钉子头、弗雷迪·克鲁格、还有哈利典狱长！.... 等等
+这部视觉小说将会让你走进心目中理想约会对象的内心、想法和涩涩的内容——但你要小心——试图赢得连环杀手的信任可能会让你身处危险，小心你的言语，否则你可能会成为他们的下一个受害者！
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://slashersim.itch.io/a-slasher-dating-simulator" class="text-purple-600 hover:underline break-all">https://slashersim.itch.io/a-slasher-dating-simulator</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/1-G_J58HHhZN7z8oJVLa0-w</p>
+                                <p class="text-sm">提取码: 01ij</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: /s/10OcDArGPelGw8GZ6s17k7A</p>
+                                <p class="text-sm">提取码: hi6m</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        function toggleDetail(header) {
+            const card = header.closest('.game-card');
+            const detail = card.querySelector('.game-detail');
+            const icon = header.querySelector('i');
+            
+            detail.classList.toggle('active');
+            icon.classList.toggle('transform');
+            icon.classList.toggle('rotate-180');
+        }
+    </script>
+</body>
+</html>
+        
+        <hr class="section-divider my-8">
+        
+<div class="py-4" style="background-color: #f8f8f8;">
+  <div class="max-w-4xl mx-auto px-4">
+
+    <div class="flex items-center mb-6">
+      <div class="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+        </svg>
+      </div>
+      <span class="ml-2 text-xl font-bold">我的其他平台账号</span>
+    </div>
+    
+    <div class="flex justify-center gap-6 mb-8">
+
+
+<a href="https://space.bilibili.com/647965937?spm_id_from=333.1007.0.0" target="_blank" class="flex flex-col items-center">
+  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden" style="background-color: #00A1D6;">
+    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9WgvM-CiVacleUKvAaag6Ki960PnAAKjGgACapuBVezAcqDotwkWNgQ.png" class="w-8 h-8 object-contain" alt="哔哩哔哩">
+  </div>
+  <span class="mt-1 text-xs">哔哩哔哩</span>
+</a>
+
+
+<a href="https://www.xiaohongshu.com/user/profile/6536d0960000000006006753" target="_blank" class="flex flex-col items-center">
+  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden" style="background-color: #FE2C55;">
+    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9mgvM-1yuw06v6Nxh-IGDepRhbmkAAKkGgACapuBVfCqp9ziLmplNgQ.png" class="w-8 h-8 object-contain" alt="小红书">
+  </div>
+  <span class="mt-1 text-xs">小红书</span>
+</a>
+      
+<a href="https://copiklagrogu.lofter.com" target="_blank" class="flex flex-col items-center">
+  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden" style="background-color: #2F5755;">
+    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9GgvM0Df83uR5oJ6cnBiOmZ169L2AAKiGgACapuBVUO8z1oa6dshNgQ.png" class="w-10 h-10 object-contain" alt="LOFTER">
+  </div>
+  <span class="mt-1 text-xs">LOFTER</span>
+</a>
+      
+<a href="https://www.douyin.com/user/ID" target="_blank" class="flex flex-col items-center">
+  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden bg-black">
+    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ8WgvLzk774b2QSmAj0r8LUz7NqX2AAKHGgACapuBVYDP_naFtYYqNgQ.png" class="w-8 h-8 object-cover" alt="抖音图标">
+  </div>
+  <span class="mt-1 text-xs">抖音</span>
+</a>
+      
+      <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=b3czsF55U1rXpA16%2FIdPodX%2BMmStSaOQS4fazrI8zaCkwXc%2BAM6n7QmaW5VHpOSn&busi_data=eyJncm91cENvZGUiOiIyNzkzNTE2MDkiLCJ0b2tlbiI6Ik1aR2ViQ1U4MU9BNlczRWRwbmdraWl6ZktnSXNQeHZJUE9ac2RyWDQ3WVNQZjY2WjlycSs1SncyZW9hOE9hVGwiLCJ1aW4iOiIyNDEwNDI3MjYxIn0%3D&data=Apw0NMriE4zH5rpN1tTYvgDaNkS8fCLzcQ7Oif4IoV6SIlgBCZEgxdPAvh3h0iixtFf8DzIbK0yI7Lp4KK_AIg&svctype=4&tempid=h5_group_info" target="_blank" class="flex flex-col items-center">
+  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden bg-[#12B7F5]">
+    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ82gvMmL5sMoAAdnmH2Z4qWMGmFumtQACnhoAAmqbgVWn4bWURXtuqzYE.png" class="w-8 h-8 object-cover" alt="QQ群图标">
+  </div>
+  <span class="mt-1 text-xs">QQ群</span>
+</a>
+    </div>
+        </div>
+
+        <div class="profile-card p-8 mb-12 animate-fadein delay-2">
+            <h2 class="text-2xl font-bold mb-6 text-center text-gray-900">感谢你看到这里</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center">
+<div class="mb-6 md:mb-0 md:mr-8">
+  <div class="p-1 rounded-full bg-gradient-to-br from-pink-200/30 to-orange-200/30 hover:from-pink-200/50 hover:to-orange-200/50 transition-all duration-500 ease-out animate-[pulse_4s_infinite]">
+    <img 
+      src="https://i.imgur.com/5rO6JSD.jpeg" 
+      alt="copiklaGrogu"
+      class="avatar w-20 h-20 md:w-28 md:h-28 object-cover rounded-full border-[3px] border-white/90 shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_16px_rgba(255,164,164,0.2)] transition-all duration-300"
+    >
+  </div>
+</div>
+                <div class="text-center md:text-left">
+                    <p class="text-gray-700 mb-4">本网页将永久更新</p>
+                    <p class="text-gray-600">喜欢的话别忘了收藏哦</p>
+                </div>
+            </div>
+        </div>
+        
+        
+<footer class="text-center py-6 text-gray-500 animate-fadein delay-3">
+    <div class="mb-2">
+        &copy; <span id="currentYear"></span> copiklaGrogu | 个人汉化作品集
+    </div>
+    <div class="text-sm">
+        <span class="inline-block mx-2">
+            <i class="fas fa-gamepad text-purple-400"></i> 游戏汉化
+        </span>
+        <span class="inline-block mx-2">
+            <i class="fas fa-heart text-red-400"></i> 非盈利制作
+        </span>
+        <span class="inline-block mx-2">
+            <i class="fas fa-coffee text-yellow-600"></i> 咖啡续命
+        </span>
+    </div>
+    <p class="text-xs mt-3 text-gray-400">
+        本站所有资源仅供学习交流，禁止商业用途
+    </p>
+</footer>
+
+<script>
+    // 自动更新年份
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // 滚动动画
+    document.addEventListener('DOMContentLoaded', function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadein');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('footer').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>
+</body>
+</html>
