@@ -104,19 +104,45 @@
             </div>
             <h1 class="text-3xl font-bold mb-2 text-gray-900">copiklaGrogu</h1>
             <p class="text-xl mb-6 text-gray-600">为爱发电的个人汉化者</p>
-            <p class="text-gray-700 max-w-2xl mx-auto mb-6">欢迎在哔哩哔哩、小红书、LOFTER以及抖音（还未注册）上关注我，获取更多汉化内容！</p>
+            <p class="text-gray-700 max-w-2xl mx-auto mb-6">欢迎大家在哔哩哔哩、小红书、LOFTER以及推特上关注我，获取更多汉化内容！为了避免失联，建议大家关注我的所有社交媒体账号（尤其是推特），感谢支持！</p>
         </div>
         
-        <!-- 关于我 -->
+<div class="w-full flex justify-center my-8">
+  <button id="contact-button" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 flex items-center">
+    <i class="fas fa-address-book mr-2"></i>
+    联系我
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const contactButton = document.getElementById('contact-button');
+    
+    contactButton.addEventListener('click', function() {
+      // 通过特定的选择器找到"我的其他平台账号"部分
+      const platformsSection = document.querySelector('div[style="background-color: #f8f8f8;"]');
+      if (platformsSection) {
+        platformsSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      } else {
+        console.error('未找到联系区域');
+      }
+    });
+  });
+</script>
+
         <div class="mb-12 animate-fadein delay-1">
             <h2 class="text-2xl font-bold mb-6 text-gray-900 flex items-center">
                 <i class="fas fa-user mr-3 text-purple-600"></i> 关于我
             </h2>
             <div class="bg-white p-6 rounded-xl shadow-sm">
-                <p class="mb-4 text-gray-700">部分游戏已获得原作者的汉化授权，所有汉化均可免费下载。</p>
-                <p class="mb-4 text-gray-700">我从未授权任何国内网站上传汉化作品，请通过我的个人页面或企鹅群获取。</p>
+                <p class="mb-4 text-gray-700">部分游戏已获得原作者的汉化授权，所有汉化均可免费下载。我从未授权任何国内网站上传汉化作品，请通过我的个人页面或企鹅群获取。</p>
 
-                <p class="mb-4 text-gray-700">游戏评分来源于原网站（以创建网页时为准），标签时间为汉化时间，中字标题为实况标题。</p>
+                <p class="mb-4 text-gray-700">游戏评分来源于原网站（以创建网页时为准），标签时间为汉化时间，中字标题为实况标题。手机端如遇内容未完全显示，请点击右上角浏览器设置，选择“桌面版网页”进行查看。</p>
+
+                <p class="mb-4 text-gray-700">提示里已经提供了下载和解压教程，如果链接打不开，那就是你输错了。链接失效的话我后台是可以看到的。解压失败的情况，请尝试更换解压软件或设备，或者找朋友帮忙试试。密码只有一个，不会有其他。如果还有问题，请自行百度解决。另外，安卓端Renpy不兼容，手机里只能安装一个游戏。</p>
             </div>
         </div>
         
@@ -173,18 +199,80 @@
 </head>
 <body class="bg-gray-50 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
-        <!-- 游戏合集标题 -->
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold text-gray-900">简中游戏合集</h1>
-            <div class="flex space-x-2">
-                <button class="p-2 rounded-full bg-gray-200 text-gray-700">
-                    <i class="fas fa-th"></i>
-                </button>
-                <button class="p-2 rounded-full bg-gray-200 text-gray-700">
-                    <i class="fas fa-list"></i>
-                </button>
-            </div>
+<div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+    <h1 class="text-2xl font-bold text-gray-900">简中游戏合集</h1>
+    <div class="relative w-full sm:w-64">
+        <input 
+            id="game-search"
+            type="text" 
+            placeholder="搜索游戏..." 
+            class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        >
+        <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+            <i class="fas fa-search"></i>
         </div>
+    </div>
+</div>
+
+<div id="games-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+</div>
+
+<!-- 无搜索结果提示 -->
+<div id="no-results" class="hidden text-center py-10 text-gray-500">
+    <i class="fas fa-search text-4xl mb-3"></i>
+    <p>没有找到匹配的游戏</p>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('game-search');
+        const gamesContainer = document.getElementById('games-container');
+        const noResults = document.getElementById('no-results');
+        const gameCards = document.querySelectorAll('.game-card');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let matchCount = 0;
+            
+            gameCards.forEach(card => {
+                const cardText = card.textContent.toLowerCase();
+                const isMatch = cardText.includes(searchTerm);
+                
+                if (isMatch || searchTerm === '') {
+                    card.style.display = '';
+                    matchCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            if (matchCount === 0 && searchTerm !== '') {
+                noResults.classList.remove('hidden');
+                gamesContainer.classList.add('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                gamesContainer.classList.remove('hidden');
+            }
+        });
+        
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                this.value = '';
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+    });
+</script>
+
+<style>
+    #game-search:focus + div {
+        color: #3B82F6;
+    }
+    
+    .game-card {
+        transition: opacity 0.3s ease;
+    }
+</style>
         
 
         <div class="space-y-4">
@@ -227,7 +315,7 @@
                             
                             <div class="bg-gray-100 p-4 rounded-lg">
                                 <h4 class="font-bold mb-2">提示</h4>
-                                <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                                <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                             </div>
                         </div>
                         
@@ -242,16 +330,16 @@
                                 <div>
                                     <p class="font-medium text-gray-700">汉化PC端（含Mac）</p>
                                     <div class="bg-gray-100 p-2 rounded">
-                                        <p class="text-sm">链接: /s/1lDNbIEaDoMtyibloEjGXwA</p>
-                                        <p class="text-sm">提取码: bvb4</p>
+                                        <p class="text-sm">链接: 1Csrqr7aXvBTgTe5lBFrGHA</p>
+                                        <p class="text-sm">提取码: u3pn</p>
                                     </div>
                                 </div>
                                 
                                 <div>
                                     <p class="font-medium text-gray-700">汉化安卓端</p>
                                     <div class="bg-gray-100 p-2 rounded">
-                                        <p class="text-sm">链接: /s/1i5BJKAXGfs6y4qFnZdTXEg</p>
-                                        <p class="text-sm">提取码: mphm</p>
+                                        <p class="text-sm">链接: 1qsFMqHOI5sd7kPFdLf8_Cg</p>
+                                        <p class="text-sm">提取码: 5pqa</p>
                                     </div>
                                 </div>
                             </div>
@@ -305,7 +393,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -320,16 +408,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1ODs89wr0WJrHXNLx9TpOjw</p>
-                                <p class="text-sm">提取码: jndy</p>
+                                <p class="text-sm">链接: 1Csrqr7aXvBTgTe5lBFrGHA</p>
+                                <p class="text-sm">提取码: u3pn</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1Fv54YP691lVFWw9bwGfTKg</p>
-                                <p class="text-sm">提取码: g8ss</p>
+                                <p class="text-sm">链接: 1qsFMqHOI5sd7kPFdLf8_Cg</p>
+                                <p class="text-sm">提取码: 5pqa</p>
                             </div>
                         </div>
                     </div>
@@ -383,7 +471,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -398,16 +486,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1mhRZh54q4xSpAVk2_o0Mlw</p>
-                                <p class="text-sm">提取码: hdn2</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/17TiFj5NXh6lFmEa36wCnEA</p>
-                                <p class="text-sm">提取码: 8ufx</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -461,7 +549,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -476,16 +564,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1FWQvWCAX0ogTo3LZHjEJIg</p>
-                                <p class="text-sm">提取码: dpkz</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1Sn5p-OWbywJAF2QZTA-8nw</p>
-                                <p class="text-sm">提取码: 5ed8</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -540,7 +628,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -555,16 +643,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1QjGxQnhCTSWntzwK692vIw</p>
-                                <p class="text-sm">提取码: cu2a</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1N_f93ZSi29h58e1SRnRjGw</p>
-                                <p class="text-sm">提取码: e77q</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -619,7 +707,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -634,16 +722,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1NAF1yuo8qQxVb9GyvLB1OQ</p>
-                                <p class="text-sm">提取码: my1p</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1dw0dLlmrc7BUsyq-_ylykg</p>
-                                <p class="text-sm">提取码: eanb</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -698,7 +786,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -777,7 +865,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -793,7 +881,7 @@
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
                                 <p class="text-sm">链接: /s/1E_pVuubQPLovXFebVK8NiA</p>
-                                <p class="text-sm">提取码: xsi1</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
@@ -801,7 +889,7 @@
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
                                 <p class="text-sm">链接: /s/1E_pVuubQPLovXFebVK8NiA</p>
-                                <p class="text-sm">提取码: xsi1</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                     </div>
@@ -855,7 +943,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。进入游戏后，请前往设置手动切换为中文。替换补丁后，成就功能将暂时失效，通关后重新验证游戏文件即可恢复成就。</p>
                     </div>
                 </div>
                 
@@ -870,16 +958,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1yzfr9nL6H2-s2cIzjdcF7A</p>
-                                <p class="text-sm">提取码: 4e2q</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端（仅有免费本体）</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1yKZzb3HeGmu4twCtRbhBEw</p>
-                                <p class="text-sm">提取码: 981x</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -933,7 +1021,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">游戏在我翻译完一个月后进行了重置，如果替换补丁打不开游戏，请从steam打开原文件删掉所有残存数据，如果还是打不开，可以百度如何从C盘找到renpy游戏存档，删掉对应游戏文件</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。游戏在我完成翻译一个月后进行了重置。若替换补丁后无法打开游戏，请通过Steam验证原文件并删除所有残留数据。如果仍无法打开，可百度教程，找到C盘中的Renpy游戏存档并删除对应游戏文件。</p>
                     </div>
                 </div>
                 
@@ -948,16 +1036,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1JUO3u5qfiWJMdMVY5KA4SA </p>
-                                <p class="text-sm">提取码: uh81</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ </p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1JUO3u5qfiWJMdMVY5KA4SA</p>
-                                <p class="text-sm">提取码: uh81</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                     </div>
@@ -1011,7 +1099,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。手机端有文本显示BUG，用安卓平板玩会恢复正常。</p>
                     </div>
                 </div>
                 
@@ -1026,16 +1114,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/13gL36JKjIoGhOkE8D2LK-g</p>
-                                <p class="text-sm">提取码: agpo</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ </p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1HEKtktXi8VYzG8w3Y2Tzvw</p>
-                                <p class="text-sm">提取码: nifp</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -1089,7 +1177,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1104,16 +1192,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1_vj3E7FoUMwlhW3_Vhlzpg</p>
-                                <p class="text-sm">提取码: 8ktl</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1X5WgIcf6KZAQ4SlVRlCr4g</p>
-                                <p class="text-sm">提取码: 0ybv</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码:  byu7</p>
                             </div>
                         </div>
                     </div>
@@ -1168,7 +1256,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">汉化版仅有SFW内容，NSFW请上官网购买</p>
+                        <p class="text-sm text-gray-700">汉化版仅包含SFW内容，NSFW内容请前往官网购买。如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1183,16 +1271,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1ltWFdsYUcDI2htZH70OGyw</p>
-                                <p class="text-sm">提取码: wsfu</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1cRuUOCsTVFkx4Bz48z2ZzQ</p>
-                                <p class="text-sm">提取码: n89r</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -1247,7 +1335,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1262,16 +1350,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1HLwKM8eq5VBuDsv2hV6isg</p>
-                                <p class="text-sm">提取码: ewy6</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1N6k7I82r0ZgF2IawstSktA </p>
-                                <p class="text-sm">提取码: kh5i</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ </p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -1320,12 +1408,12 @@
                 <div class="col-span-2">
                     <h3 class="text-xl font-bold mb-4">简介</h3>
                     <p class="text-gray-700 mb-6">
-                        我曾听过这样一个故事……在山下有一个集市，那里可以买卖任何东西。访客们戴着面具，成为无面的陌生人。这里是无良商人、被放逐者和绝望者的栖身之地。你就是那些绝望者之一。集市中，每个陌生人都怀揣着自己的秘密和野心，他们可以指引你穿梭于集市之中，带你达到目的地，但不要指望他们会真心为你着想。
+                        我曾听过这样一个故事...在山下有一个集市，那里可以买卖任何东西。访客们戴着面具，成为无面的陌生人。这里是无良商人、被放逐者和绝望者的栖身之地。你就是那些绝望者之一。集市中，每个陌生人都怀揣着自己的秘密和野心，他们可以指引你穿梭于集市之中，带你达到目的地，但不要指望他们会真心为你着想。
                     </p>
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1340,16 +1428,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1RFKgcyQ6bs4e-S-wZuQ-Ow</p>
-                                <p class="text-sm">提取码: 0922</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1RFKgcyQ6bs4e-S-wZuQ-Ow</p>
-                                <p class="text-sm">提取码: 0922</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                     </div>
@@ -1403,7 +1491,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">安卓用户如果卡在Sun阻止你修电线那里，多点 1 号电线就会自动退出</p>
+                        <p class="text-sm text-gray-700">安卓用户如果卡在Sun阻止你修电线的地方，多次点击1号电线即可自动退出。如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1418,16 +1506,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1mjv_iOj9evRyRF5GhFU_2A</p>
-                                <p class="text-sm">提取码: nm08</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码:uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1QYZ7KmU9nWsY2B8zA70rVg</p>
-                                <p class="text-sm">提取码: y5yn</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -1482,7 +1570,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">文件内的html文件用浏览器形式打开，文件夹内含游戏攻略</p>
+                        <p class="text-sm text-gray-700">文件内的HTML文件可用浏览器打开，文件夹中还包含游戏攻略。如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1497,16 +1585,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1ztZNzi1-YZPW2anBLN8dWg</p>
-                                <p class="text-sm">提取码: mu28</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1ztZNzi1-YZPW2anBLN8dWg</p>
-                                <p class="text-sm">提取码: mu28</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -1561,7 +1649,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1576,16 +1664,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1GA5hEWsWht5xWqLjHBGBMw</p>
-                                <p class="text-sm">提取码: hqnj</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1GA5hEWsWht5xWqLjHBGBMw</p>
-                                <p class="text-sm">提取码: hqnj</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -1639,7 +1727,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1654,16 +1742,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1MLxvDwWOUSJ84vyI16tajw</p>
-                                <p class="text-sm">提取码: wgb2</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1340Y8BzsIliAc5Q4SdrhJg</p>
-                                <p class="text-sm">提取码: 1005</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -1716,7 +1804,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1731,16 +1819,16 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/13eFN2eBG1cb0AShtBh7Sdg</p>
-                                <p class="text-sm">提取码: q9ic</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/13eFN2eBG1cb0AShtBh7Sdg</p>
-                                <p class="text-sm">提取码: q9ic</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
@@ -1793,7 +1881,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">原游戏因两位创作人的分离而取消制作了</p>
+                        <p class="text-sm text-gray-700">原游戏因两位创作人的分离而取消制作了。如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1808,22 +1896,22 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/133__3AWKc5sTQgauHAH6pA</p>
-                                <p class="text-sm">提取码: hqnj</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/133__3AWKc5sTQgauHAH6pA</p>
-                                <p class="text-sm">提取码: hqnj</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="mt-6">
-                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                        <p class="text-sm text-gray-500">程序: copiklaGrogu 汉化：正宫</p>
                     </div>
                 </div>
             </div>
@@ -1873,7 +1961,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加盘网页前缀，解压密码为我的名字，链接打不开就是你输错了</p>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
                     </div>
                 </div>
                 
@@ -1888,16 +1976,94 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/1-G_J58HHhZN7z8oJVLa0-w</p>
-                                <p class="text-sm">提取码: 01ij</p>
+                                <p class="text-sm">链接: 1iQBzmJVHwyx3YnhXOWIqcQ</p>
+                                <p class="text-sm">提取码: uje2</p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: /s/10OcDArGPelGw8GZ6s17k7A</p>
-                                <p class="text-sm">提取码: hi6m</p>
+                                <p class="text-sm">链接: 1uF79nZPaCLam-8I8X-A2eQ</p>
+                                <p class="text-sm">提取码: byu7</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序: copiklaGrogu 汉化：正宫</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第二十三个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRLWgvhaeVFIC8pyhqFJ7sp_cCAXx-AAJKGwACapuBVRvMtRnNClc1NgQ.png" class="w-full h-full object-cover" alt="UnderYourSkin">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">身为人气术曲师的你被病娇虚拟歌姬缠上了</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">UnderYourSkin</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">helloyinny</span>
+                        <span class="mr-3">2025/05/08</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+    <span class="px-2 py-1 bg-red-100 text-black-800 rounded text-xs">病娇</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        你以为自己走了狗屎运，捡到个原型Vocaldroid程序，名字叫Veiss。他声音好听得要命，你兴奋地准备写歌上传到MothTube！但很快，你发现事情不对劲。歌词逐渐变味，像是在跟你调情。直到那时你才明白，这根本不是什么Vocaldroid，而是伪装成程序的病毒。他侵入你的脑机系统，翻你记忆、改你代码。他叫Veiss，嘴贱、毒舌、管闲事，还烦人得要命。他想要你的一切，连那些你藏得最深的秘密也不肯放过。不过，你最好别叫他“病毒”。他最讨厌这个词了。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://helloyinny.itch.io/under-your-skin" class="text-purple-600 hover:underline break-all">https://helloyinny.itch.io/under-your-skin</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: 1Csrqr7aXvBTgTe5lBFrGHA</p>
+                                <p class="text-sm">提取码: u3pn</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: 1qsFMqHOI5sd7kPFdLf8_Cg</p>
+                                <p class="text-sm">提取码: 5pqa</p>
                             </div>
                         </div>
                     </div>
@@ -1910,6 +2076,239 @@
         </div>
     </div>
 </div>
+
+ <!-- 第二十四个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRLmgvhn2HbZdtv5XcjOfjfzDYIiTNAAJLGwACapuBVRjrfZQH6uEGNgQ.jpg" class="w-full h-full object-cover" alt="The Driver">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">变态司机绑架了你，想让你变成他的玩偶</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">The Driver</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">HeadLocker</span>
+                        <span class="mr-3">2025/05/02</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">恐怖</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        这个游戏最初是在我今年二月一次妄想发作时创作的。后来我重写了剧情，重新绘制了画面，希望能让更多人更容易理解。但它依然充满了混乱、痛苦和精神状态的挣扎。所以，如果过程中让你感到不适，请不要勉强。你可以随意感受、解读、喜欢或讨厌它，我都接受。如果我遗漏了任何需要提醒的触发警告，请一定告诉我。
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://headlocker.itch.io/the-driver" class="text-purple-600 hover:underline break-all">https://headlocker.itch.io/the-driver</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端补丁</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: 1Csrqr7aXvBTgTe5lBFrGHA</p>
+                                <p class="text-sm">提取码: u3pn</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端补丁</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: 1Csrqr7aXvBTgTe5lBFrGHA</p>
+                                <p class="text-sm">提取码: u3pn</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第二十五个游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRMGgviB5UstwMCDaedAM9iXmz51i4AAJNGwACapuBVZBBNCaS--ngNgQ.jpeg" class="w-full h-full object-cover" alt="Robostream">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">你创造的AI邪教机器人被当成了黑奴主播</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">Robostream</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">biinxiix</span>
+                        <span class="mr-3">2025/05/01</span>
+                        <span class="rating">4.8分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-green-100 text-black-800 rounded text-xs">人外</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        愚人节快乐 >:)！这是我随手做的一个小AU小游戏～昨晚又熬夜了吧？你昏昏欲睡地走到桌前，点开屏幕，你最喜欢的机器人正在直播！游戏有三个结局，这次没有语音哦，抱歉～
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://biinxiix.itch.io/robostream" class="text-purple-600 hover:underline break-all">https://biinxiix.itch.io/robostream</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: 1Csrqr7aXvBTgTe5lBFrGHA </p>
+                                <p class="text-sm">提取码: u3pn</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: 1qsFMqHOI5sd7kPFdLf8_Cg</p>
+                                <p class="text-sm">提取码: 5pqa</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- 第二十六游戏 -->
+        <div class="space-y-4">
+            <div class="game-card">
+                <div class="p-4 cursor-pointer game-header" onclick="toggleDetail(this)">
+                    <div class="flex justify-between items-start">
+                        <div>
+<div class="w-full h-48 overflow-hidden rounded-t-lg relative mb-4">
+  <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRL2gvh4zpDqEF_WFD-YLsZ29mASCmAAJMGwACapuBVVjnYbnQ6basNgQ.png" class="w-full h-full object-cover" alt="Rizz The Wolf">
+                        
+  <div class="absolute bottom-0 left-0 p-4 w-full" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+    <p class="text-sm text-white mt-1">作为败犬女主的你能否成功俘获校园王子的心？</p>
+  </div>
+</div>
+
+                    <h2 class="text-lg font-bold text-gray-900">Rizz The Wolf</h2>
+                    <div class="flex items-center mt-1 text-sm text-gray-600">
+                        <span class="mr-3">fantaisa | TealCat</span>
+                        <span class="mr-3">2025/05/01</span>
+                        <span class="rating">4.9分</span>
+                    </div>
+
+                    <div class="flex mt-2 space-x-2">
+    <span class="px-2 py-1 bg-black-100 text-white-800 rounded text-xs">喜剧</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+            </div>
+        </div>
+        
+        <div class="game-detail">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-bold mb-4">简介</h3>
+                    <p class="text-gray-700 mb-6">
+                        情人节这天，你终于决定向全校最神秘的高冷男神告白...他，会接受你吗？
+                    </p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">提示</h4>
+                        <p class="text-sm text-gray-700">如何添加百度网盘前缀：复制一个已有的链接，然后将其中的地址部分替换为我的链接即可。如何解压并游玩：1、电脑端用户，下载完成后，点击窗口左上角的【查看】选项卡，在【显示/隐藏】组中勾选【文件扩展名】选项。右键文件选择“重命名”，将文件名末尾添加【.rar】后缀。如果是分卷压缩，只需解压第一个压缩包，系统会自动解压所有分卷。2、手机端用户，下载并安装MT管理器，长按文件选择“重命名”，然后在文件名末尾添加【.rar】后缀。注意事项：文件夹内包含加密文件，所有解压密码均为我的名字。
+</p>
+                    </div>
+                </div>
+                
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">下载链接</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-gray-700">游戏官网</p>
+                                    <a href="https://fantasia-kittcat.itch.io/rizz-the-wolf" class="text-purple-600 hover:underline break-all">https://fantasia-kittcat.itch.io/rizz-the-wolf</a>
+                                </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化PC端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: 1Csrqr7aXvBTgTe5lBFrGHA</p>
+                                <p class="text-sm">提取码: u3pn</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-medium text-gray-700">汉化安卓端</p>
+                            <div class="bg-gray-100 p-2 rounded">
+                                <p class="text-sm">链接: 1qsFMqHOI5sd7kPFdLf8_Cg</p>
+                                <p class="text-sm">提取码: 5pqa</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">程序/汉化: copiklaGrogu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <script>
         function toggleDetail(header) {
@@ -1941,8 +2340,15 @@
     
     <div class="flex justify-center gap-6 mb-8">
 
+<a href="https://x.com/copiklaGrogu" target="_blank" class="flex flex-col items-center">
+  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden bg-black">
+    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIUPGgy9Iw2s_E56TA6NRJ6GRix0zV2AALuFgAC9nCZVcAYI88y7zyRNgQ.png" class="w-8 h-8 object-cover" alt="X">
+  </div>
+  <span class="mt-1 text-xs">X（推特）</span>
+</a>
 
-<a href="https://space.bilibili.com/647965937?spm_id_from=333.1007.0.0" target="_blank" class="flex flex-col items-center">
+
+<a href="https://x.com/copiklaGrogu" target="_blank" class="flex flex-col items-center">
   <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden" style="background-color: #00A1D6;">
     <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9WgvM-CiVacleUKvAaag6Ki960PnAAKjGgACapuBVezAcqDotwkWNgQ.png" class="w-8 h-8 object-contain" alt="哔哩哔哩">
   </div>
@@ -1952,7 +2358,7 @@
 
 <a href="https://www.xiaohongshu.com/user/profile/6536d0960000000006006753" target="_blank" class="flex flex-col items-center">
   <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden" style="background-color: #FE2C55;">
-    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9mgvM-1yuw06v6Nxh-IGDepRhbmkAAKkGgACapuBVfCqp9ziLmplNgQ.png" class="w-8 h-8 object-contain" alt="小红书">
+    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRLGgvgAbwNxSegRo3_2Rp9Phe7I33AAJIGwACapuBVQLAw9UZwp4zNgQ.png" class="w-8 h-8 object-contain" alt="小红书">
   </div>
   <span class="mt-1 text-xs">小红书</span>
 </a>
@@ -1964,12 +2370,6 @@
   <span class="mt-1 text-xs">LOFTER</span>
 </a>
       
-<a href="https://www.douyin.com/user/ID" target="_blank" class="flex flex-col items-center">
-  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden bg-black">
-    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ8WgvLzk774b2QSmAj0r8LUz7NqX2AAKHGgACapuBVYDP_naFtYYqNgQ.png" class="w-8 h-8 object-cover" alt="抖音图标">
-  </div>
-  <span class="mt-1 text-xs">抖音</span>
-</a>
       
       <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=b3czsF55U1rXpA16%2FIdPodX%2BMmStSaOQS4fazrI8zaCkwXc%2BAM6n7QmaW5VHpOSn&busi_data=eyJncm91cENvZGUiOiIyNzkzNTE2MDkiLCJ0b2tlbiI6Ik1aR2ViQ1U4MU9BNlczRWRwbmdraWl6ZktnSXNQeHZJUE9ac2RyWDQ3WVNQZjY2WjlycSs1SncyZW9hOE9hVGwiLCJ1aW4iOiIyNDEwNDI3MjYxIn0%3D&data=Apw0NMriE4zH5rpN1tTYvgDaNkS8fCLzcQ7Oif4IoV6SIlgBCZEgxdPAvh3h0iixtFf8DzIbK0yI7Lp4KK_AIg&svctype=4&tempid=h5_group_info" target="_blank" class="flex flex-col items-center">
   <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden bg-[#12B7F5]">
