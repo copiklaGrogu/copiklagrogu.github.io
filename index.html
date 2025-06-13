@@ -8,31 +8,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #6D28D9;
-            --secondary: #7C3AED;
-            --accent: #8B5CF6;
+            --primary: #7C3AED;
+            --secondary: #8B5CF6;
+            --accent: #A78BFA;
             --light: #F5F3FF;
             --dark: #1F2937;
+            --gradient-start: #7C3AED;
+            --gradient-end: #A78BFA;
         }
         
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
             background-color: #FAFAFA;
             color: var(--dark);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
         
+
         .profile-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,243,255,0.9));
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(245,243,255,0.95));
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0 12px 32px rgba(109, 40, 217, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .profile-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(109, 40, 217, 0.15);
         }
         
         .avatar {
@@ -40,7 +45,13 @@
             height: 120px;
             border-radius: 50%;
             border: 4px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
         }
         
         .skill-badge {
@@ -48,37 +59,71 @@
             color: var(--primary);
             border-radius: 20px;
             transition: all 0.3s ease;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
         
         .skill-badge:hover {
             background-color: var(--primary);
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.2);
         }
         
         .social-icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             background: white;
             color: var(--dark);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
         
         .social-icon:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             color: var(--primary);
         }
         
-        .section-divider {
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(109,40,217,0.3), transparent);
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+        
+        .game-header {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .game-header:hover {
+            background-color: rgba(245, 243, 255, 0.3);
+        }
+        
+        .game-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .game-detail.active {
+            max-height: 2000px;
+            padding: 24px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: rgba(245, 243, 255, 0.2);
         }
         
         @keyframes fadeIn {
@@ -86,142 +131,258 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
         .animate-fadein {
             animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
         }
         
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.3);
+            z-index: 99;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        .game-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .game-image {
+            transition: transform 0.5s ease;
+        }
+        
+        .game-card:hover .game-image {
+            transform: scale(1.05);
+        }
+        
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(109,40,217,0.3), transparent);
+            margin: 3rem auto;
+            width: 80%;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-card {
+                padding: 1.5rem;
+            }
+            
+            .game-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .social-icon {
+                width: 40px;
+                height: 40px;
+            }
+        }
     </style>
 </head>
-<body class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto">
-        <!-- 个人资料卡片 -->
+<body class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-indigo-50">
+
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </div>
+
+    <div class="max-w-6xl mx-auto">
+
         <div class="profile-card p-8 mb-12 text-center animate-fadein">
             <div class="flex justify-center mb-6">
-                     <img src="https://i.imgur.com/t33tD5e.jpeg" alt="copiklaGrogu" class="avatar">
+                <img src="https://i.imgur.com/t33tD5e.jpeg" alt="copiklaGrogu" class="avatar">
             </div>
             <h1 class="text-3xl font-bold mb-2 text-gray-900">copiklaGrogu</h1>
             <p class="text-xl mb-6 text-gray-600">为爱发电的个人汉化者</p>
-            <p class="text-gray-700 max-w-2xl mx-auto mb-6">欢迎大家在哔哩哔哩、小红书、LOFTER以及推特上关注我，获取更多汉化内容！为了避免失联，建议大家关注我的所有社交媒体账号（尤其是推特），感谢支持！</p>
+            <p class="text-gray-700 max-w-2xl mx-auto mb-6">欢迎大家在哔哩哔哩、小红书、LOFTER以及推特上关注我，获取更多汉化内容！为了避免失联，建议大家关注我的所有社媒（尤其是推特）</p>
         </div>
         
-<div class="w-full flex justify-center my-8">
-  <button id="contact-button" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 flex items-center">
-    <i class="fas fa-address-book mr-2"></i>
-    联系我
-  </button>
-</div>
+        <div class="w-full flex justify-center my-8">
+            <button id="contact-button" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 flex items-center animate-pulse">
+                <i class="fas fa-address-book mr-2"></i>
+                联系我
+            </button>
+        </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const contactButton = document.getElementById('contact-button');
-    
-    contactButton.addEventListener('click', function() {
-      // 通过特定的选择器找到"我的其他平台账号"部分
-      const platformsSection = document.querySelector('div[style="background-color: #f8f8f8;"]');
-      if (platformsSection) {
-        platformsSection.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      } else {
-        console.error('未找到联系区域');
-      }
-    });
-  });
-</script>
 
-        <div class="mb-12 animate-fadein delay-1">
-            <h2 class="text-2xl font-bold mb-6 text-gray-900 flex items-center">
-                <i class="fas fa-user mr-3 text-purple-600"></i> 关于我
-            </h2>
-            <div class="bg-white p-6 rounded-xl shadow-sm">
-                <p class="mb-4 text-gray-700">部分游戏已获得原作者的汉化授权，所有汉化均可免费下载。我从未授权任何国内网站上传汉化作品，请通过我的个人页面或企鹅群获取。</p>
+<div class="mb-12 animate-fadein delay-1">
+    <h2 class="text-3xl font-bold mb-8 text-gray-900 flex items-center justify-center">
+        <i class="fas fa-user mr-3 text-purple-600"></i> 关于我
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <p class="mb-4 text-gray-700">游戏评分来源于原网站（以创建网页时为准），标签时间为汉化时间，中字标题为实况标题。手机端如遇内容未完全显示，请点击右上角浏览器设置，选择“桌面版网页”进行查看。</p>
+        <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-lg mb-3 flex items-center">
+                <span class="w-3 h-3 bg-purple-500 rounded-full mr-2"></span>
+                授权声明
+            </h3>
+            <ul class="space-y-3 pl-4">
+                <li class="relative pl-5 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-purple-300 before:rounded-full">
+                    部分游戏已获得原作者授权，所有汉化内容可免费获取
+                </li>
+                <li class="relative pl-5 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-purple-300 before:rounded-full">
+                    未授权任何国内网站转载，请通过个人主页或企鹅群获取
+                </li>
+            </ul>
+        </div>
 
-                <p class="mb-4 text-gray-700">请勿在网盘软件内直接解压压缩包，整合包需全部下载后在本地解压。若解压失败，可尝试重新下载或更换设备，这可能与操作环境有关。如有疑问，可百度搜索解决方法或请教deepseek。若链接失效，我会尽快补档。由于我还有全职工作，业余时间也要兼顾汉化和休息，请勿因个人问题私信打扰，谢谢理解。</p>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-lg mb-3 flex items-center">
+                <span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
+                信息说明
+            </h3>
+            <ul class="space-y-3 pl-4">
+                <li class="relative pl-5 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-blue-300 before:rounded-full">
+                    游戏评分来自原发布网站（创建时为准）
+                </li>
+                <li class="relative pl-5 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-blue-300 before:rounded-full">
+                    标签标注汉化完成时间，中文标题取自实况视频
+                </li>
+                <li class="relative pl-5 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-blue-300 before:rounded-full">
+                    手机浏览建议切换"桌面版网站"获得完整体验
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-lg mb-3 flex items-center">
+                <span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
+                资源获取
+            </h3>
+            <ul class="space-y-3 pl-4">
+                <li class="relative pl-5 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-green-300 before:rounded-full">
+                    资源首发百度/115网盘，失效后在Telegram补档
+                </li>
+                <li class="relative pl-5 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-green-300 before:rounded-full">
+                    所有旧汉化作品已转移至Telegram
+                </li>
+                <li class="relative pl-5">
+                    <span class="text-blue-500">➤</span> 加入群组：
+                    <a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline font-medium">
+                        copiklaGrogu汉化资源
+                    </a>
+                    <span class="text-xs text-gray-500 ml-2">(普通浏览器可能打不开，推荐用Chrome或Edge访问)</span>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-lg mb-3 flex items-center">
+                <span class="w-3 h-3 bg-orange-500 rounded-full mr-2"></span>
+                工具推荐
+            </h3>
+            <ul class="space-y-3 pl-4">
+                <li class="relative pl-5">
+                    <span class="text-blue-500">➤</span> Telegram中文设置：
+                    <a href="https://zhpengfei.com/telegram-set-chinese-guide/" target="_blank" class="text-blue-600 hover:underline font-medium">
+                        2025最新指南
+                    </a>
+                </li>
+                <li class="relative pl-5">
+                    <span class="text-blue-500">➤</span> VPN推荐：
+                    <a href="https://mxwljsq.xyz/auth/register?code=Kfbt" target="_blank" class="text-blue-600 hover:underline font-medium">
+                        🔗一键跳转注册
+                    </a>
+                    <span class="text-xs text-gray-500 ml-2">（打不开的话，可以随意搜索个VPN用新人免费体验登录）</span>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-lg mb-3 flex items-center">
+                <span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                问题解决
+            </h3>
+            <ul class="space-y-3 pl-4">
+                <li class="relative pl-5 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-gray-300 before:rounded-full">
+                    遇到Bug请先搜索游戏卡片内的提示说明
+                </li>
+                <li class="relative pl-5 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-gray-300 before:rounded-full">
+                    未解决问题建议使用
+                    <span class="font-semibold text-purple-600">DeepSeek</span>
+                    或百度搜索
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>        <div class="mb-12 animate-fadein delay-2">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+                <h2 class="text-3xl font-bold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
+                    简中游戏合集
+                </h2>
+                <div class="relative w-full sm:w-80">
+                    <input 
+                        id="game-search"
+                        type="text" 
+                        placeholder="搜索游戏名称、标签或作者..." 
+                        class="w-full pl-10 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    >
+                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="no-results" class="hidden text-center py-16 text-gray-500">
+                <i class="fas fa-search text-5xl mb-4 text-purple-300"></i>
+                <p class="text-xl font-medium">没有找到匹配的游戏</p>
+                <p class="text-sm mt-2">尝试不同的关键词或筛选条件</p>
             </div>
         </div>
         
-        <hr class="section-divider my-8">
-        
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>copiklaGrogu - 个人汉化作品集</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .game-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-        
-        .game-tag {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 12px;
-            background-color: #F3F4F6;
-            color: #6B7280;
-            margin-right: 4px;
-        }
-        
-        .game-detail {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-        
-        .game-detail.active {
-            max-height: 1000px;
-            padding: 20px;
-            border-top: 1px solid #EEE;
-        }
-        
-        .rating {
-            color: #F59E0B;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto">
-<div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-    <h1 class="text-2xl font-bold text-gray-900">简中游戏合集</h1>
-    <div class="relative w-full sm:w-64">
-        <input 
-            id="game-search"
-            type="text" 
-            placeholder="搜索游戏..." 
-            class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        >
-        <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-            <i class="fas fa-search"></i>
-        </div>
-    </div>
-</div>
-
-<div id="games-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-</div>
-
-<!-- 无搜索结果提示 -->
-<div id="no-results" class="hidden text-center py-10 text-gray-500">
-    <i class="fas fa-search text-4xl mb-3"></i>
-    <p>没有找到匹配的游戏</p>
-</div>
+        <hr class="section-divider my-12">
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -316,7 +477,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">需先赞助原作者获取本体，再将我的汉化补丁复制粘贴进去。作者将在7月份免费公开游戏。解压密码为我的名字，请勿将本人汉化用于商业用途。</p>
+                        <p class="text-sm text-gray-700">需先赞助原作者获取本体，再将我的汉化补丁复制粘贴进去。作者将在7月份免费公开游戏。解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -331,16 +492,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwblv133f1#</p>
-                                <p class="text-sm">提取码: s9c2</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwblv133f1#</p>
-                                <p class="text-sm">提取码: s9c2</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -394,7 +553,7 @@
                             
                             <div class="bg-gray-100 p-4 rounded-lg">
                                 <h4 class="font-bold mb-2">提示</h4>
-                                <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                             </div>
                         </div>
                         
@@ -409,16 +568,14 @@
                                 <div>
                                     <p class="font-medium text-gray-700">汉化PC端（含Mac）</p>
                                     <div class="bg-gray-100 p-2 rounded">
-                                        <p class="text-sm">链接: 115cdn.com/s/swwblby33f1#</p>
-                                        <p class="text-sm">提取码: x9d8</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                                     </div>
                                 </div>
                                 
                                 <div>
                                     <p class="font-medium text-gray-700">汉化安卓端</p>
                                     <div class="bg-gray-100 p-2 rounded">
-                                        <p class="text-sm">链接: 115cdn.com/s/swwsg6933f1#</p>
-                                        <p class="text-sm">提取码: xc96</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -472,7 +629,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -487,16 +644,14 @@
                         <div>
                                     <p class="font-medium text-gray-700">汉化PC端（含Mac）</p>
                                     <div class="bg-gray-100 p-2 rounded">
-                                        <p class="text-sm">链接: 115cdn.com/s/swwblby33f1#</p>
-                                        <p class="text-sm">提取码: x9d8</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                                     </div>
                                 </div>
                                 
                                 <div>
                                     <p class="font-medium text-gray-700">汉化安卓端</p>
                                     <div class="bg-gray-100 p-2 rounded">
-                                        <p class="text-sm">链接: 115cdn.com/s/swwsg6933f1#</p>
-                                        <p class="text-sm">提取码: xc96</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -550,7 +705,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -565,16 +720,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -628,7 +781,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -643,16 +796,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -707,7 +858,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -722,16 +873,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -786,7 +935,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -801,16 +950,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -944,7 +1091,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -959,16 +1106,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1022,7 +1167,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1037,16 +1182,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端（仅有免费本体）</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1100,7 +1243,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">游戏在我汉化一个月后重置，若替换后出现BUG，请删除所有数据并重新下载。若仍无法打开，请搜索教程，从C盘清除残留数据。解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1115,16 +1258,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1178,7 +1319,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">手机端有文本显示BUG，用安卓平板玩会恢复正常。请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">手机端有文本显示BUG，用安卓平板玩会恢复正常。解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1193,16 +1334,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1256,7 +1395,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                         <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1271,16 +1410,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1335,7 +1472,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">汉化版仅包含SFW内容，NSFW内容请前往官网购买。请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">汉化仅提供SFW版本，NSFW内容请前往官网下载。解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1350,16 +1487,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1414,7 +1549,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1429,16 +1564,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1492,7 +1625,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1507,16 +1640,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1570,7 +1701,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">安卓用户如果卡在Sun阻止你修电线的地方，多次点击1号电线即可自动退出。请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">安卓用户如果卡在Sun阻止你修电线的地方，多次点击1号电线即可自动退出。解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1585,16 +1716,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1649,7 +1778,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">文件内的HTML文件可用浏览器打开，文件夹中还包含游戏攻略。请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">文件内的HTML文件可用浏览器打开，文件夹中还包含游戏攻略。解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1664,16 +1793,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1728,7 +1855,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1743,16 +1870,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1806,7 +1931,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1821,16 +1946,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1883,7 +2006,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1898,16 +2021,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -1960,7 +2081,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">原游戏因两位创作人的分离而取消制作了。请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">原游戏因两位创作人的分离而取消制作了。解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -1975,16 +2096,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -2040,7 +2159,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -2055,16 +2174,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwqt2c33f1#</p>
-<p class="text-sm break-all">提取码: s0e3</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码: w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                         </div>
                     </div>
                     
@@ -2117,7 +2234,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -2132,16 +2249,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwblby33f1#/p>
-                                <p class="text-sm">提取码:x9d8</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsg6933f1#</p>
-                                <p class="text-sm">提取码: xc96</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -2194,7 +2309,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -2209,16 +2324,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwblby33f1#</p>
-                                <p class="text-sm">提取码: x9d8</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端补丁</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwblby33f1#</p>
-                                <p class="text-sm">提取码: x9d8</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -2271,7 +2384,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -2286,16 +2399,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwblby33f1#</p>
-<p class="text-sm break-all">提取码: x9d8</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码:w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -2348,7 +2459,7 @@
                     
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">请自行添加网页前缀（只需要填入网址的部分即可）。所有解压密码都是我的名字，打不开就是你输错了。不懂的地方可以百度搜索解决方法，实在不行可以请教DeepSeek。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                 
@@ -2363,16 +2474,14 @@
                         <div>
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
-<p class="text-sm break-all">链接:115cdn.com/s/swwblby33f1# </p>
-<p class="text-sm break-all">提取码: x9d8</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                         
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">链接: 115cdn.com/s/swwsre233f1#</p>
-                                <p class="text-sm">提取码:w6e1</p>
+                                <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                     </div>
@@ -2406,115 +2515,140 @@
 <div class="py-4" style="background-color: #f8f8f8;">
   <div class="max-w-4xl mx-auto px-4">
 
-    <div class="flex items-center mb-6">
-      <div class="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
-        </svg>
-      </div>
-      <span class="ml-2 text-xl font-bold">我的其他平台账号</span>
-    </div>
-    
-    <div class="flex justify-center gap-6 mb-8">
+        <div class="py-8 rounded-xl mb-12" style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,243,255,0.9))">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="flex items-center justify-center mb-8">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <span class="ml-3 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">我的其他平台账号</span>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-8">
+                    <a href="https://t.me/copiklaGrpgu" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden bg-[#12B7F5] shadow-md">
+                            <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIe4WhLcrcFSOMcr7b-i5EETAMKZJt7AAJYEgACrklhVtj6JAdECd7pNgQ.jpg" class="w-10 h-10 object-cover" alt="电报">
+                        </div>
+                        <span class="mt-2 text-sm font-medium">Telegram</span>
+                        <span class="text-xs text-gray-500">电报群</span>
+                    </a>
 
-<a href="https://x.com/copiklaGrogu" target="_blank" class="flex flex-col items-center">
-  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden bg-black">
-    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIUPGgy9Iw2s_E56TA6NRJ6GRix0zV2AALuFgAC9nCZVcAYI88y7zyRNgQ.png" class="w-8 h-8 object-cover" alt="X">
-  </div>
-  <span class="mt-1 text-xs">X（推特）</span>
-</a>
+                    <a href="https://x.com/copiklaGrogu" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden bg-black shadow-md">
+                            <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIUPGgy9Iw2s_E56TA6NRJ6GRix0zV2AALuFgAC9nCZVcAYI88y7zyRNgQ.png" class="w-10 h-10 object-cover" alt="X">
+                        </div>
+                        <span class="mt-2 text-sm font-medium">X</span>
+                        <span class="text-xs text-gray-500">推特</span>
+                    </a>
 
+                    <a href="https://space.bilibili.com/647965937?spm_id_from=333.1007.0.0" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden shadow-md" style="background-color: #00A1D6;">
+                            <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9WgvM-CiVacleUKvAaag6Ki960PnAAKjGgACapuBVezAcqDotwkWNgQ.png" class="w-10 h-10 object-contain" alt="哔哩哔哩">
+                        </div>
+                        <span class="mt-2 text-sm font-medium">哔哩哔哩</span>
+                    </a>
 
-<a href="https://x.com/copiklaGrogu" target="_blank" class="flex flex-col items-center">
-  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden" style="background-color: #00A1D6;">
-    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9WgvM-CiVacleUKvAaag6Ki960PnAAKjGgACapuBVezAcqDotwkWNgQ.png" class="w-8 h-8 object-contain" alt="哔哩哔哩">
-  </div>
-  <span class="mt-1 text-xs">哔哩哔哩</span>
-</a>
-
-
-<a href="https://www.xiaohongshu.com/user/profile/6536d0960000000006006753" target="_blank" class="flex flex-col items-center">
-  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden" style="background-color: #FE2C55;">
-    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRLGgvgAbwNxSegRo3_2Rp9Phe7I33AAJIGwACapuBVQLAw9UZwp4zNgQ.png" class="w-8 h-8 object-contain" alt="小红书">
-  </div>
-  <span class="mt-1 text-xs">小红书</span>
-</a>
-      
-<a href="https://copiklagrogu.lofter.com" target="_blank" class="flex flex-col items-center">
-  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden" style="background-color: #2F5755;">
-    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9GgvM0Df83uR5oJ6cnBiOmZ169L2AAKiGgACapuBVUO8z1oa6dshNgQ.png" class="w-10 h-10 object-contain" alt="LOFTER">
-  </div>
-  <span class="mt-1 text-xs">LOFTER</span>
-</a>
-      
-      
-      <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=b3czsF55U1rXpA16%2FIdPodX%2BMmStSaOQS4fazrI8zaCkwXc%2BAM6n7QmaW5VHpOSn&busi_data=eyJncm91cENvZGUiOiIyNzkzNTE2MDkiLCJ0b2tlbiI6Ik1aR2ViQ1U4MU9BNlczRWRwbmdraWl6ZktnSXNQeHZJUE9ac2RyWDQ3WVNQZjY2WjlycSs1SncyZW9hOE9hVGwiLCJ1aW4iOiIyNDEwNDI3MjYxIn0%3D&data=Apw0NMriE4zH5rpN1tTYvgDaNkS8fCLzcQ7Oif4IoV6SIlgBCZEgxdPAvh3h0iixtFf8DzIbK0yI7Lp4KK_AIg&svctype=4&tempid=h5_group_info" target="_blank" class="flex flex-col items-center">
-  <div class="w-14 h-8 rounded-full flex items-center justify-center overflow-hidden bg-[#12B7F5]">
-    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ82gvMmL5sMoAAdnmH2Z4qWMGmFumtQACnhoAAmqbgVWn4bWURXtuqzYE.png" class="w-8 h-8 object-cover" alt="QQ群图标">
-  </div>
-  <span class="mt-1 text-xs">QQ群</span>
-</a>
-    </div>
+                    <a href="https://www.xiaohongshu.com/user/profile/6536d0960000000006006753" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden shadow-md" style="background-color: #FE2C55;">
+                            <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRLGgvgAbwNxSegRo3_2Rp9Phe7I33AAJIGwACapuBVQLAw9UZwp4zNgQ.png" class="w-10 h-10 object-contain" alt="小红书">
+                        </div>
+                        <span class="mt-2 text-sm font-medium">小红书</span>
+                    </a>
+                    
+                    <a href="https://copiklagrogu.lofter.com" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden shadow-md" style="background-color: #2F5755;">
+                            <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9GgvM0Df83uR5oJ6cnBiOmZ169L2AAKiGgACapuBVUO8z1oa6dshNgQ.png" class="w-12 h-12 object-contain" alt="LOFTER">
+                        </div>
+                        <span class="mt-2 text-sm font-medium">LOFTER</span>
+                    </a>
+                    
+                    <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=b3czsF55U1rXpA16%2FIdPodX%2BMmStSaOQS4fazrI8zaCkwXc%2BAM6n7QmaW5VHpOSn&busi_data=eyJncm91cENvZGUiOiIyNzkzNTE2MDkiLCJ0b2tlbiI6Ik1aR2ViQ1U4MU9BNlczRWRwbmdraWl6ZktnSXNQeHZJUE9ac2RyWDQ3WVNQZjY2WjlycSs1SncyZW9hOE9hVGwiLCJ1aW4iOiIyNDEwNDI3MjYxIn0%3D&data=Apw0NMriE4zH5rpN1tTYvgDaNkS8fCLzcQ7Oif4IoV6SIlgBCZEgxdPAvh3h0iixtFf8DzIbK0yI7Lp4KK_AIg&svctype=4&tempid=h5_group_info" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden bg-[#12B7F5] shadow-md">
+                            <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ82gvMmL5sMoAAdnmH2Z4qWMGmFumtQACnhoAAmqbgVWn4bWURXtuqzYE.png" class="w-10 h-10 object-cover" alt="QQ群图标">
+                        </div>
+                        <span class="mt-2 text-sm font-medium">QQ群</span>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="profile-card p-8 mb-12 animate-fadein delay-2">
-            <h2 class="text-2xl font-bold mb-6 text-center text-gray-900">感谢你看到这里</h2>
+
+        <div class="profile-card p-8 mb-12 animate-fadein delay-3 bg-gradient-to-r from-purple-50 to-indigo-50">
+            <h2 class="text-3xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">感谢你看到这里</h2>
             <div class="flex flex-col md:flex-row items-center justify-center">
-<div class="mb-6 md:mb-0 md:mr-8">
-  <div class="p-1 rounded-full bg-gradient-to-br from-pink-200/30 to-orange-200/30 hover:from-pink-200/50 hover:to-orange-200/50 transition-all duration-500 ease-out animate-[pulse_4s_infinite]">
-    <img 
-      src="https://i.imgur.com/5rO6JSD.jpeg" 
-      alt="copiklaGrogu"
-      class="avatar w-20 h-20 md:w-28 md:h-28 object-cover rounded-full border-[3px] border-white/90 shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_16px_rgba(255,164,164,0.2)] transition-all duration-300"
-    >
-  </div>
-</div>
+                <div class="mb-6 md:mb-0 md:mr-8">
+                    <div class="p-1 rounded-full bg-gradient-to-br from-pink-200/30 to-orange-200/30 hover:from-pink-200/50 hover:to-orange-200/50 transition-all duration-500 ease-out animate-[pulse_4s_infinite]">
+                        <img 
+                            src="https://i.imgur.com/5rO6JSD.jpeg" 
+                            alt="copiklaGrogu"
+                            class="avatar w-24 h-24 md:w-32 md:h-32 object-cover rounded-full border-[3px] border-white/90 shadow-[0_8px_24px_rgba(109,40,217,0.15)] hover:shadow-[0_12px_28px_rgba(255,164,164,0.25)] transition-all duration-300"
+                        >
+                    </div>
+                </div>
                 <div class="text-center md:text-left">
-                    <p class="text-gray-700 mb-4">本网页将永久更新</p>
-                    <p class="text-gray-600">喜欢的话别忘了收藏哦</p>
+                    <p class="text-gray-700 mb-4 text-lg">本网页将永久更新</p>
+                    <p class="text-gray-600 text-lg">喜欢的话别忘了收藏哦</p>
                 </div>
             </div>
         </div>
         
-        
-<footer class="text-center py-6 text-gray-500 animate-fadein delay-3">
-    <div class="mb-2">
-        &copy; <span id="currentYear"></span> copiklaGrogu | 个人汉化作品集
-    </div>
-    <div class="text-sm">
-        <span class="inline-block mx-2">
-            <i class="fas fa-gamepad text-purple-400"></i> 游戏汉化
-        </span>
-        <span class="inline-block mx-2">
-            <i class="fas fa-heart text-red-400"></i> 非盈利制作
-        </span>
-        <span class="inline-block mx-2">
-            <i class="fas fa-coffee text-yellow-600"></i> 咖啡续命
-        </span>
-    </div>
-    <p class="text-xs mt-3 text-gray-400">
-        本站所有资源仅供学习交流，禁止商业用途
-    </p>
-</footer>
 
-<script>
-    // 自动更新年份
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-    
-    // 滚动动画
-    document.addEventListener('DOMContentLoaded', function() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadein');
+        <footer class="text-center py-8 text-gray-500 animate-fadein delay-3">
+            <div class="mb-4 text-lg">
+                &copy; <span id="currentYear"></span> copiklaGrogu | 个人汉化作品集
+            </div>
+            <div class="flex justify-center gap-4 mb-4">
+                <span class="inline-flex items-center">
+                    <i class="fas fa-gamepad text-purple-400 mr-1"></i> 游戏汉化
+                </span>
+                <span class="inline-flex items-center">
+                    <i class="fas fa-heart text-red-400 mr-1"></i> 非盈利制作
+                </span>
+                <span class="inline-flex items-center">
+                    <i class="fas fa-coffee text-yellow-600 mr-1"></i> 咖啡续命
+                </span>
+            </div>
+            <p class="text-sm text-gray-400">
+                本站所有资源仅供学习交流，禁止商业用途
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // 自动更新年份
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 联系按钮滚动
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactButton = document.getElementById('contact-button');
+            
+            contactButton.addEventListener('click', function() {
+                const platformsSection = document.querySelector('div[style*="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,243,255,0.9))"]');
+                if (platformsSection) {
+                    platformsSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('footer').forEach(el => {
-            observer.observe(el);
         });
-    });
 </script>
 </body>
 </html>
