@@ -6,126 +6,194 @@
     <title>copiklGrogu - 个人汉化者</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        :root {
-            --primary: #5DBE8A;  
-            --secondary: #7FC6A4;  
-            --accent: #A8D8B9;  
-            --light: #F0F7F4;  
-            --dark: #2D3A3A;  
-            --gradient-start: #5DBE8A;
-            --gradient-end: #A8D8B9;
-        }
-         
-        body {
-            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            background-color: #FAFAFA;
-            color: var(--dark);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-         
-        .profile-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,247,244,0.95));
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            box-shadow: 0 12px 32px rgba(93, 190, 138, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-         
-        .profile-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(93, 190, 138, 0.15);
-        }
-         
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-         
-        .avatar:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
-        }
-         
-        .skill-badge {
-            background-color: var(--light);
-            color: var(--primary);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            padding: 4px 12px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-         
-        .skill-badge:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(93, 190, 138, 0.2);
-        }
-         
-        .social-icon {
-            width: 44px;
-            height: 44px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: white;
-            color: var(--dark);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-        }
-         
-        .social-icon:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            color: var(--primary);
-        }
-         
-        .game-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 16px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-         
-        .game-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-        }
-         
-        .game-header {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-         
-        .game-header:hover {
-            background-color: rgba(240, 247, 244, 0.3);
-        }
-         
-    .game-detail {
-        max-height: 0;
+<style>
+    :root {
+        --primary: #5DBE8A;  
+        --secondary: #7FC6A4;  
+        --accent: #A8D8B9;  
+        --light: #F0F7F4;  
+        --dark: #2D3A3A;  
+        --gradient-start: #5DBE8A;
+        --gradient-end: #A8D8B9;
+    }
+     
+    body {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        background-color: #FAFAFA;
+        color: var(--dark);
+        line-height: 1.6;
+        scroll-behavior: smooth;
+    }
+     
+    .profile-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,247,244,0.95));
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        box-shadow: 0 12px 32px rgba(93, 190, 138, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        min-height: fit-content;
+        height: auto;
         overflow: hidden;
-        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        will-change: max-height;
     }
      
-    .game-detail.active {
-        max-height: 2000px;
-        padding: 24px;
-        border-top: 1px solid rgba(0,0,0,0.05);
-        background: rgba(240, 247, 244, 0.2);
+    .profile-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(93, 190, 138, 0.15);
     }
      
+    .avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid white;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+     
+    .avatar:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    }
+     
+    .skill-badge {
+        background-color: var(--light);
+        color: var(--primary);
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        padding: 4px 12px;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+     
+    .skill-badge:hover {
+        background-color: var(--primary);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(93, 190, 138, 0.2);
+    }
+     
+    .social-icon {
+        width: 44px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: white;
+        color: var(--dark);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    }
+     
+    .social-icon:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        color: var(--primary);
+    }
+     
+    .game-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        overflow: visible;
+        border: 1px solid rgba(255,255,255,0.3);
+        min-height: fit-content;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+     
+    .game-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    }
+
+    .content-wrapper {
+        height: auto;
+        min-height: fit-content;
+        overflow: visible;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .text-container {
+        height: auto;
+        overflow: visible;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        width: 100%;
+        white-space: pre-wrap;
+    }
+
+    .expandable-content {
+        position: relative;
+        width: 100%;
+        height: auto;
+        transition: all 0.5s ease;
+    }
+     
+    .game-header {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 16px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+     
+    .game-header:hover {
+        background-color: rgba(240, 247, 244, 0.3);
+    }
+     
+.game-detail {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: max-height, opacity, padding;
+    padding: 0;
+    margin: 0;
+    visibility: hidden;
+    width: 100%; 
+}
+
+.game-detail.active {
+    max-height: none; 
+    opacity: 1;
+    visibility: visible;
+    padding: 24px;
+    margin: 8px 0;
+    height: auto !important; 
+    min-height: fit-content; 
+    border-top: 1px solid rgba(0,0,0,0.05);
+    background: rgba(240, 247, 244, 0.2);
+}
+
+
+.text-wrapper {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+
+.text-container {
+    height: auto;
+    overflow: visible;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.8;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.85);
+}     
     .game-header i {
         transition: transform 0.3s ease;
     }
@@ -133,107 +201,251 @@
     .game-header i.rotate-180 {
         transform: rotate(180deg);
     }
-         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+     
+    .auto-text {
+        font-size: clamp(0.875rem, 1.5vw, 1rem);
+        line-height: 1.5;
+    }
+    
+    .auto-text-lg {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        line-height: 1.4;
+    }
+    
+    .auto-text-xl {
+        font-size: clamp(1.25rem, 3vw, 1.5rem);
+        line-height: 1.3;
+    }
+    
+    .game-card .game-header h2 {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+    }
+
+    .game-card .game-header p {
+        font-size: clamp(0.875rem, 1.5vw, 1rem);
+        line-height: 1.4;
+    }
+
+    .game-detail p {
+        font-size: clamp(0.875rem, 1.5vw, 1rem);
+        line-height: 1.6;
+        margin-bottom: 1em;
+        color: rgba(0, 0, 0, 0.85);
+    }
+
+    @media (max-width: 768px) {
+        .game-card {
+            margin: 10px;
+            width: calc(100% - 20px);
+        }
+
+        .game-detail.active {
+            padding: 16px;
+        }
+
+        .game-header {
+            padding: 12px 16px;
+        }
+
+        .text-container {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .game-card .game-header h2 {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+        }
+        
+        .game-card .game-header p {
+            font-size: clamp(0.8125rem, 2vw, 1rem);
+        }
+        
+        .game-detail {
+            padding: 1rem;
+        }
+        
+        .game-detail p {
+            font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+        }
+
+        .profile-card {
+            padding: 1.5rem;
         }
          
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .game-card {
+            margin-bottom: 1.5rem;
         }
          
-        .animate-fadein {
-            animation: fadeIn 0.8s ease-out forwards;
-            opacity: 0;
+        .social-icon {
+            width: 40px;
+            height: 40px;
         }
-         
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
-         
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-         
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(93, 190, 138, 0.3);
-            z-index: 99;
-        }
-         
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-         
-        .back-to-top:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-        }
-         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-         
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-         
-        .game-image-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px 12px 0 0;
-        }
-         
-        .game-image {
-            transition: transform 0.5s ease;
-        }
-         
-        .game-card:hover .game-image {
-            transform: scale(1.05);
-        }
-         
-        .section-divider {
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(93,190,138,0.3), transparent);
-            margin: 3rem auto;
-            width: 80%;
-        }
-         
-        @media (max-width: 768px) {
-            .profile-card {
-                padding: 1.5rem;
-            }
+    }
+     
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+     
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+     
+    .animate-fadein {
+        animation: fadeIn 0.8s ease-out forwards;
+        opacity: 0;
+    }
+     
+    .animate-float {
+        animation: float 4s ease-in-out infinite;
+    }
+     
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+     
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(93, 190, 138, 0.3);
+        z-index: 99;
+    }
+     
+    .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+    }
+     
+    .back-to-top:hover {
+        background: var(--secondary);
+        transform: translateY(-3px);
+    }
+     
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+     
+    .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+     
+    .game-image-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px 12px 0 0;
+    }
+     
+    .game-image {
+        transition: transform 0.5s ease;
+    }
+     
+    .game-card:hover .game-image {
+        transform: scale(1.05);
+    }
+     
+    .section-divider {
+        border: none;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(93,190,138,0.3), transparent);
+        margin: 3rem auto;
+        width: 80%;
+    }
+
+    * {
+        scroll-behavior: smooth;
+    }
+</style>
+
+<script>
+document.querySelectorAll('.game-header').forEach(header => {
+    header.addEventListener('click', function() {
+        const detail = this.nextElementSibling;
+        const isActive = detail.classList.contains('active');
+        
+        if (!isActive) {
+            
+            detail.style.height = '0px';
+            detail.style.visibility = 'visible';
+            detail.style.display = 'block';
+            
+            
+            const height = detail.scrollHeight;
+            
+            
+            requestAnimationFrame(() => {
+                detail.classList.add('active');
+                detail.style.height = height + 'px';
+                
+                
+                setTimeout(() => {
+                    detail.style.height = 'auto';
+                }, 500);
+            });
+        } else {
              
-            .game-card {
-                margin-bottom: 1.5rem;
-            }
-             
-            .social-icon {
-                width: 40px;
-                height: 40px;
+            const height = detail.scrollHeight;
+            detail.style.height = height + 'px';
+            
+            requestAnimationFrame(() => {
+                detail.style.height = '0px';
+                detail.classList.remove('active');
+            });
+            
+            setTimeout(() => {
+                detail.style.visibility = 'hidden';
+                detail.style.display = 'none';
+            }, 500);
+        }
+
+        
+        if (!isActive) {
+            const content = detail.querySelector('.text-container');
+            if (content) {
+                content.style.maxHeight = 'none';
+                content.style.height = 'auto';
             }
         }
-    </style>
+    });
+});
+
+
+function adjustHeight() {
+    document.querySelectorAll('.game-detail.active').forEach(detail => {
+        detail.style.height = 'auto';
+        const content = detail.querySelector('.text-container');
+        if (content) {
+            content.style.maxHeight = 'none';
+            content.style.height = 'auto';
+        }
+    });
+}
+
+
+window.addEventListener('resize', adjustHeight);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    adjustHeight();
+});
+</script>
 </head>
 <body class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-green-50 to-teal-50">
  
@@ -438,7 +650,7 @@
                      
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
+                        <p class="text-sm text-gray-700">已转正，请直接去官网下载</p>
                     </div>
                 </div>
                  
@@ -667,7 +879,7 @@
                      
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h4 class="font-bold mb-2">提示</h4>
-                        <p class="text-sm text-gray-700">需先赞助原作者获取本体，再将我的汉化补丁复制粘贴进去。作者将在7月份免费公开游戏。解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
+                        <p class="text-sm text-gray-700">解压密码均为我的名字。请挂VPN后点击蓝色字体进电报群，若仍打不开，请跳转至页面底部，通过Telegram图标进入。</p>
                     </div>
                 </div>
                  
@@ -676,18 +888,18 @@
                             <div class="space-y-3">
                                 <div>
                                     <p class="font-medium text-gray-700">游戏官网</p>
-                                    <a href="https://x.com/HeadLocker_/status/1932127697544855676" class="text-purple-600 hover:underline break-all">https://x.com/HeadLocker_/status/1932127697544855676</a>
+                                    <a href="https://headlocker.itch.io/mxm-404" class="text-purple-600 hover:underline break-all">https://headlocker.itch.io/mxm-404</a>
                                 </div>
                          
                         <div>
-                            <p class="font-medium text-gray-700">汉化补丁</p>
+                            <p class="font-medium text-gray-700">PC汉化</p>
                             <div class="bg-gray-100 p-2 rounded">
                                 <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
                         </div>
                          
                         <div>
-                            <p class="font-medium text-gray-700">汉化补丁</p>
+                            <p class="font-medium text-gray-700">安卓汉化</p>
                             <div class="bg-gray-100 p-2 rounded">
                                 <p class="text-sm">链接已转移至<a href="https://t.me/copiklaGrpgu" target="_blank" class="text-blue-600 hover:underline">copiklaGrogu汉化资源。</a></p>
                             </div>
@@ -1218,14 +1430,12 @@
                             <p class="font-medium text-gray-700">汉化PC端</p>
                             <div class="bg-gray-100 p-2 rounded">
                                 <p class="text-sm">已转正，请直接去官网下载</p>
-                                <p class="text-sm">已转正，请直接去官网下载</p>
                             </div>
                         </div>
                          
                         <div>
                             <p class="font-medium text-gray-700">汉化安卓端</p>
                             <div class="bg-gray-100 p-2 rounded">
-                                <p class="text-sm">已转正，请直接去官网下载</p>
                                 <p class="text-sm">已转正，请直接去官网下载</p>
                             </div>
                         </div>
