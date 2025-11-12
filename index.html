@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
     :root {
-        --primary: #5DBE8A;  
-        --secondary: #7FC6A4;  
-        --accent: #A8D8B9;  
-        --light: #F0F7F4;  
-        --dark: #2D3A3A;  
-        --gradient-start: #5DBE8A;
-        --gradient-end: #A8D8B9;
+        --primary: #D4BBE8; 
+        --secondary: #E5D4F5; 
+        --accent: #C9A9E0; 
+        --light: #F5F0FA; 
+        --dark: #4A3A5A; 
+        --gradient-start: #E8D4F5;
+        --gradient-end: #D4BBE8;
     }
      
     body {
@@ -26,12 +26,12 @@
     }
      
     .profile-card {
-        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,247,244,0.95));
+        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(245,240,250,0.95));
         backdrop-filter: blur(12px);
         border-radius: 20px;
-        box-shadow: 0 12px 32px rgba(93, 190, 138, 0.1);
+        box-shadow: 0 12px 32px rgba(212, 187, 232, 0.15);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-        border: 1px solid rgba(255,255,255,0.2);
+        border: 1px solid rgba(232, 212, 245, 0.3);
         min-height: fit-content;
         height: auto;
         overflow: hidden;
@@ -39,7 +39,7 @@
      
     .profile-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(93, 190, 138, 0.15);
+        box-shadow: 0 20px 40px rgba(212, 187, 232, 0.25);
     }
      
     .avatar {
@@ -47,18 +47,18 @@
         height: 120px;
         border-radius: 50%;
         border: 4px solid white;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        box-shadow: 0 8px 24px rgba(201, 169, 224, 0.2);
         transition: all 0.3s ease;
     }
      
     .avatar:hover {
         transform: scale(1.05);
-        box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        box-shadow: 0 12px 28px rgba(201, 169, 224, 0.3);
     }
      
     .skill-badge {
         background-color: var(--light);
-        color: var(--primary);
+        color: var(--accent);
         border-radius: 20px;
         transition: all 0.3s ease;
         padding: 4px 12px;
@@ -67,10 +67,10 @@
     }
      
     .skill-badge:hover {
-        background-color: var(--primary);
+        background: linear-gradient(135deg, var(--primary), var(--accent));
         color: white;
         transform: translateY(-3px);
-        box-shadow: 0 4px 12px rgba(93, 190, 138, 0.2);
+        box-shadow: 0 4px 12px rgba(212, 187, 232, 0.3);
     }
      
     .social-icon {
@@ -82,23 +82,24 @@
         border-radius: 50%;
         background: white;
         color: var(--dark);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        box-shadow: 0 4px 12px rgba(212, 187, 232, 0.15);
         transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
     }
      
     .social-icon:hover {
         transform: translateY(-5px) scale(1.1);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        color: var(--primary);
+        box-shadow: 0 8px 20px rgba(212, 187, 232, 0.3);
+        background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+        color: white;
     }
      
     .game-card {
         background: rgba(255, 255, 255, 0.95);
         border-radius: 16px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 6px 20px rgba(212, 187, 232, 0.12);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         overflow: visible;
-        border: 1px solid rgba(255,255,255,0.3);
+        border: 1px solid rgba(232, 212, 245, 0.3);
         min-height: fit-content;
         height: auto;
         display: flex;
@@ -108,7 +109,7 @@
      
     .game-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 12px 28px rgba(212, 187, 232, 0.2);
     }
 
     .content-wrapper {
@@ -146,7 +147,7 @@
     }
      
     .game-header:hover {
-        background-color: rgba(240, 247, 244, 0.3);
+        background: linear-gradient(135deg, rgba(245, 240, 250, 0.3), rgba(232, 212, 245, 0.2));
     }
      
 .game-detail {
@@ -169,10 +170,9 @@
     margin: 8px 0;
     height: auto !important; 
     min-height: fit-content; 
-    border-top: 1px solid rgba(0,0,0,0.05);
-    background: rgba(240, 247, 244, 0.2);
+    border-top: 1px solid rgba(212, 187, 232, 0.15);
+    background: linear-gradient(135deg, rgba(245, 240, 250, 0.3), rgba(232, 212, 245, 0.2));
 }
-
 
 .text-wrapper {
     width: 100%;
@@ -181,7 +181,6 @@
     padding: 0 16px;
     box-sizing: border-box;
 }
-
 
 .text-container {
     height: auto;
@@ -192,7 +191,7 @@
     white-space: pre-wrap;
     line-height: 1.8;
     font-size: 16px;
-    color: rgba(0, 0, 0, 0.85);
+    color: rgba(74, 58, 90, 0.85);
 }     
     .game-header i {
         transition: transform 0.3s ease;
@@ -232,7 +231,7 @@
         font-size: clamp(0.875rem, 1.5vw, 1rem);
         line-height: 1.6;
         margin-bottom: 1em;
-        color: rgba(0, 0, 0, 0.85);
+        color: rgba(74, 58, 90, 0.85);
     }
 
     @media (max-width: 768px) {
@@ -314,7 +313,7 @@
         right: 30px;
         width: 50px;
         height: 50px;
-        background: var(--primary);
+        background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
         color: white;
         border-radius: 50%;
         display: flex;
@@ -324,7 +323,7 @@
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(93, 190, 138, 0.3);
+        box-shadow: 0 4px 12px rgba(212, 187, 232, 0.4);
         z-index: 99;
     }
      
@@ -334,8 +333,9 @@
     }
      
     .back-to-top:hover {
-        background: var(--secondary);
+        background: linear-gradient(135deg, var(--accent), var(--primary));
         transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(212, 187, 232, 0.5);
     }
      
     @keyframes pulse {
@@ -364,7 +364,7 @@
     .section-divider {
         border: none;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(93,190,138,0.3), transparent);
+        background: linear-gradient(90deg, transparent, rgba(212,187,232,0.4), transparent);
         margin: 3rem auto;
         width: 80%;
     }
@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 </head>
-<body class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-green-50 to-teal-50">
+<body class="min-h-screen py-12 px-4 sm:px-6 lg:px-8" style="background: linear-gradient(135deg, #F5F0FA 0%, #E8D4F5 50%, #D4BBE8 100%);">
  
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up text-xl"></i>
@@ -457,15 +457,15 @@ document.addEventListener('DOMContentLoaded', () => {
  
         <div class="profile-card p-8 mb-12 text-center animate-fadein">
             <div class="flex justify-center mb-6">
-                <img src="https://i.imgur.com/t33tD5e.jpeg" alt="copiklaGrogu" class="avatar">
+                <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEG3hppFGjUkcJ7GR4ffnpUUJNPDOQSqAACTikAAuMZqVTBh7_Wl-zIgTYE.jpg" alt="copiklaGrogu" class="avatar">
             </div>
             <h1 class="text-3xl font-bold mb-2 text-gray-900">copiklaGrogu</h1>
             <p class="text-xl mb-6 text-gray-600">为爱发电的个人汉化者</p>
-            <p class="text-gray-700 max-w-2xl mx-auto mb-6">欢迎大家在哔哩哔哩、小红书、LOFTER以及推特上关注我，获取更多汉化内容！为了避免失联，建议大家关注我的所有社媒（尤其是推特）</p>
+            <p class="text-gray-700 max-w-2xl mx-auto mb-6">欢迎大家在哔哩哔哩、小红书、LOFTER以及推特上关注我，获取更多汉化内容！为了避免失联,建议大家关注我的所有社媒（尤其是推特）</p>
         </div>
          
         <div class="w-full flex justify-center my-8">
-            <button id="contact-button" class="bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 flex items-center animate-pulse">
+            <button id="contact-button" class="text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 flex items-center animate-pulse" style="background: linear-gradient(135deg, #E8D4F5, #D4BBE8);">
                 <i class="fas fa-address-book mr-2"></i>
                 联系我
             </button>
@@ -2933,7 +2933,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
  
  
-    <script>
+<script>
     function toggleDetail(header) {
         const card = header.closest('.game-card');
         const detail = card.querySelector('.game-detail');
@@ -2955,23 +2955,23 @@ document.addEventListener('DOMContentLoaded', () => {
          
 <hr class="section-divider my-8">
          
-<div class="py-4" style="background-color: #f0f7f4;">
+<div class="py-4" style="background: linear-gradient(135deg, #F5F0FA 0%, #E8D4F5 50%);">
   <div class="max-w-4xl mx-auto px-4">
  
-        <div class="py-8 rounded-xl mb-12" style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,243,255,0.9))">
+        <div class="py-8 rounded-xl mb-12" style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,240,250,0.9)); box-shadow: 0 8px 24px rgba(212, 187, 232, 0.15);">
             <div class="max-w-4xl mx-auto px-4">
                 <div class="flex items-center justify-center mb-8">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-100 to-teal-100 backdrop-blur-sm flex items-center justify-center text-green-600 shadow-md" style="background-color: rgba(200, 250, 220, 0.7);">
-                        <i class="fas fa-share-alt"></i>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-md" style="background: linear-gradient(135deg, #E8D4F5, #D4BBE8);">
+                        <i class="fas fa-share-alt text-white"></i>
                     </div>
-                    <span class="ml-3 text-2xl font-bold text-green-600">我的其他平台账号</span>
+                    <span class="ml-3 text-2xl font-bold" style="background: linear-gradient(135deg, #C9A9E0, #9B7BB5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">我的其他平台账号</span>
                 </div>
                  
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-8">
  
  
                     <a href="https://x.com/copiklaGrogu" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden bg-black shadow-md">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden bg-black shadow-md hover:shadow-lg" style="transition: all 0.3s ease;">
                             <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIUPGgy9Iw2s_E56TA6NRJ6GRix0zV2AALuFgAC9nCZVcAYI88y7zyRNgQ.png" class="w-10 h-10 object-cover" alt="X">
                         </div>
                         <span class="mt-2 text-sm font-medium">X</span>
@@ -2979,28 +2979,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     </a>
  
                     <a href="https://space.bilibili.com/647965937?spm_id_from=333.1007.0.0" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden shadow-md" style="background-color: #00A1D6;">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden shadow-md hover:shadow-lg" style="background-color: #00A1D6; transition: all 0.3s ease;">
                             <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9WgvM-CiVacleUKvAaag6Ki960PnAAKjGgACapuBVezAcqDotwkWNgQ.png" class="w-10 h-10 object-contain" alt="哔哩哔哩">
                         </div>
                         <span class="mt-2 text-sm font-medium">哔哩哔哩</span>
                     </a>
  
                     <a href="https://www.xiaohongshu.com/user/profile/6536d0960000000006006753" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden shadow-md" style="background-color: #FE2C55;">
-                            <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIRLGgvgAbwNxSegRo3_2Rp9Phe7I33AAJIGwACapuBVQLAw9UZwp4zNgQ.png" class="w-10 h-10 object-contain" alt="小红书">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden shadow-md hover:shadow-lg" style="background-color: #FE2C55; transition: all 0.3s ease;">
+                            <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEG38JpFG3WCNKnu1JhjabRaLoTsMZ6ugACHSsAAuMZqVSZoDIknArcBTYE.png" class="w-10 h-10 object-contain" alt="小红书">
                         </div>
                         <span class="mt-2 text-sm font-medium">小红书</span>
                     </a>
                      
                     <a href="https://copiklagrogu.lofter.com" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden shadow-md" style="background-color: #2F5755;">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden shadow-md hover:shadow-lg" style="background-color: #2F5755; transition: all 0.3s ease;">
                             <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ9GgvM0Df83uR5oJ6cnBiOmZ169L2AAKiGgACapuBVUO8z1oa6dshNgQ.png" class="w-12 h-12 object-contain" alt="LOFTER">
                         </div>
                         <span class="mt-2 text-sm font-medium">LOFTER</span>
                     </a>
                      
                     <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=b3czsF55U1rXpA16%2FIdPodX%2BMmStSaOQS4fazrI8zaCkwXc%2BAM6n7QmaW5VHpOSn&busi_data=eyJncm91cENvZGUiOiIyNzkzNTE2MDkiLCJ0b2tlbiI6Ik1aR2ViQ1U4MU9BNlczRWRwbmdraWl6ZktnSXNQeHZJUE9ac2RyWDQ3WVNQZjY2WjlycSs1SncyZW9hOE9hVGwiLCJ1aW4iOiIyNDEwNDI3MjYxIn0%3D&data=Apw0NMriE4zH5rpN1tTYvgDaNkS8fCLzcQ7Oif4IoV6SIlgBCZEgxdPAvh3h0iixtFf8DzIbK0yI7Lp4KK_AIg&svctype=4&tempid=h5_group_info" target="_blank" class="flex flex-col items-center transform transition-all hover:-translate-y-1">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden bg-[#12B7F5] shadow-md">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden bg-[#12B7F5] shadow-md hover:shadow-lg" style="transition: all 0.3s ease;">
                             <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAIQ82gvMmL5sMoAAdnmH2Z4qWMGmFumtQACnhoAAmqbgVWn4bWURXtuqzYE.png" class="w-10 h-10 object-cover" alt="QQ群图标">
                         </div>
                         <span class="mt-2 text-sm font-medium">QQ群</span>
@@ -3010,15 +3010,18 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
  
  
-<div class="profile-card p-8 mb-12 animate-fadein delay-3 bg-gradient-to-r from-green-50 to-teal-50">
-    <h2 class="text-3xl font-bold mb-8 text-center text-green-700">感谢你看到这里</h2>
+<div class="profile-card p-8 mb-12 animate-fadein delay-3" style="background: linear-gradient(135deg, rgba(245,240,250,0.95), rgba(232,212,245,0.95)); box-shadow: 0 12px 32px rgba(212, 187, 232, 0.2);">
+    <h2 class="text-3xl font-bold mb-8 text-center" style="background: linear-gradient(135deg, #C9A9E0, #9B7BB5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">感谢你看到这里</h2>
     <div class="flex flex-col md:flex-row items-center justify-center">
         <div class="mb-6 md:mb-0 md:mr-8">
-            <div class="p-1 rounded-full bg-gradient-to-br from-green-200/30 to-teal-200/30 hover:from-green-200/50 hover:to-teal-200/50 transition-all duration-500 ease-out animate-[pulse_4s_infinite]">
+            <div class="p-1 rounded-full transition-all duration-500 ease-out animate-[pulse_4s_infinite]" style="background: linear-gradient(135deg, rgba(232,212,245,0.3), rgba(212,187,232,0.3)); transition: all 0.3s ease;">
                 <img
                     src="https://i.imgur.com/5rO6JSD.jpeg"
                     alt="copiklaGrogu"
-                    class="avatar w-24 h-24 md:w-32 md:h-32 object-cover rounded-full border-[3px] border-white/90 shadow-[0_8px_24px_rgba(16,185,129,0.15)] hover:shadow-[0_12px_28px_rgba(5,150,105,0.25)] transition-all duration-300"
+                    class="avatar w-24 h-24 md:w-32 md:h-32 object-cover rounded-full border-[3px] border-white/90 transition-all duration-300"
+                    style="box-shadow: 0 8px 24px rgba(212, 187, 232, 0.25);"
+                    onmouseover="this.style.boxShadow='0 12px 28px rgba(201, 169, 224, 0.35)'"
+                    onmouseout="this.style.boxShadow='0 8px 24px rgba(212, 187, 232, 0.25)'"
                 >
             </div>
         </div>
@@ -3076,7 +3079,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const contactButton = document.getElementById('contact-button');
              
             contactButton.addEventListener('click', function() {
-                const platformsSection = document.querySelector('div[style*="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,243,255,0.9))"]');
+                const platformsSection = document.querySelector('div[style*="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,240,250,0.9))"]');
                 if (platformsSection) {
                     platformsSection.scrollIntoView({ 
                         behavior: 'smooth',
